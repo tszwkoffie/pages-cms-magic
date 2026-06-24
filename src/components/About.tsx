@@ -16,7 +16,7 @@ export function About() {
 
   return (
     <section id="about" className="relative overflow-hidden">
-      <div className="mx-auto max-w-7xl grid lg:grid-cols-[1fr_1.1fr_0.9fr] gap-8 px-5 py-20 items-center">
+      <div className="mx-auto max-w-[88rem] grid lg:grid-cols-[1fr_1.1fr_0.9fr] gap-8 px-5 py-20 items-center">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
