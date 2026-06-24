@@ -20,18 +20,18 @@ export function ContactCta() {
           className="max-w-xl md:mr-auto"
         >
           <h2 className="font-heading text-4xl sm:text-6xl font-bold leading-[0.95] text-foreground text-balance">
-            LET&apos;S BUILD
+            LATEN WE
             <br />
-            THE FUTURE <span className="text-primary">TOGETHER.</span>
+            DE TOEKOMST <span className="text-primary">SAMEN BOUWEN.</span>
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed">
-            Interested in partnering with Jeavy Reppel? Get in touch and become part of the journey.
+            Interesse in een partnership met Jeavy Reppel? Neem contact op en word onderdeel van het avontuur.
           </p>
           <a
             href="mailto:info@jeavyreppel.com"
             className="group mt-7 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-7 py-3.5 rounded hover:brightness-110 transition"
           >
-            CONTACT US
+            NEEM CONTACT OP
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <ul className="mt-8 space-y-3">

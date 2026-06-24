@@ -7,7 +7,7 @@ export function Partners() {
     <section id="partners" className="border-t border-border bg-card">
       <div className="mx-auto max-w-7xl px-5 py-14">
         <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mb-8">
-          OUR <span className="text-primary">PARTNERS</span>
+          ONZE <span className="text-primary">PARTNERS</span>
         </h2>
         <div className="relative overflow-hidden">
           <div className="flex w-max animate-marquee gap-14 items-center">

@@ -3,8 +3,8 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "HOME", href: "#home" },
-  { label: "ABOUT", href: "#about" },
-  { label: "SEASON", href: "#season" },
+  { label: "OVER MIJ", href: "#about" },
+  { label: "SEIZOEN", href: "#season" },
   { label: "SPONSORS", href: "#partners" },
   { label: "SOCIALS", href: "#socials" },
   { label: "CONTACT", href: "#contact" },
@@ -55,7 +55,7 @@ export function Navbar() {
           href="#contact"
           className="hidden lg:inline-flex bg-primary text-primary-foreground font-heading text-sm font-semibold tracking-wider px-5 py-2.5 rounded hover:brightness-110 transition"
         >
-          BECOME A PARTNER
+          WORD PARTNER
         </a>
 
         <button

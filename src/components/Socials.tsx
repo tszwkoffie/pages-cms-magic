@@ -10,10 +10,10 @@ type Post = {
 };
 
 const posts: Post[] = [
-  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "P1 in Valencia! What a weekend on track 🏆", image: "images/hero.jpg", meta: "2 days ago" },
-  { platform: "youtube", handle: "Jeavy Reppel Karting", caption: "Onboard lap — Genk circuit preparation", image: "images/helmet.jpg", meta: "5 days ago" },
-  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "Paddock ready with the #236 — Junior Rotax", image: "images/paddock.jpg", meta: "1 week ago" },
-  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "New season, new goals. CS55 Racing 🔴", image: "images/profile.png", meta: "2 weeks ago" },
+  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "P1 in Valencia! Wat een weekend op de baan 🏆", image: "images/hero.jpg", meta: "2 dagen geleden" },
+  { platform: "youtube", handle: "Jeavy Reppel Karting", caption: "Onboard ronde — voorbereiding circuit Genk", image: "images/helmet.jpg", meta: "5 dagen geleden" },
+  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "Paddock klaar met de #236 — Junior Rotax", image: "images/paddock.jpg", meta: "1 week geleden" },
+  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "Nieuw seizoen, nieuwe doelen. CS55 Racing 🔴", image: "images/profile.png", meta: "2 weken geleden" },
 ];
 
 function PostCard({ post }: { post: Post }) {
@@ -42,7 +42,7 @@ function PostCard({ post }: { post: Post }) {
         <div className="mt-3 flex items-center justify-between">
           <span className="text-xs text-muted-foreground">{post.meta}</span>
           <span className="inline-flex items-center gap-1 text-xs text-primary">
-            <Heart size={13} /> Latest
+            <Heart size={13} /> Nieuwste
           </span>
         </div>
       </div>
@@ -56,7 +56,7 @@ export function Socials() {
       <div className="mx-auto max-w-7xl px-5 py-14">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-8">
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground">
-            LATEST <span className="text-primary">SOCIALS</span>
+            LAATSTE <span className="text-primary">SOCIALS</span>
           </h2>
           <a
             href="https://instagram.com"
@@ -65,7 +65,7 @@ export function Socials() {
             className="font-heading text-sm font-semibold tracking-wider text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
           >
             <Instagram size={16} className="text-primary" />
-            FOLLOW @JEAVY_REPPEL.KARTING
+            VOLG @JEAVY_REPPEL.KARTING
           </a>
         </div>
         <div className="relative overflow-hidden">
