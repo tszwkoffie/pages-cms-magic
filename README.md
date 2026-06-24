@@ -1,6 +1,6 @@
 # Jeavy Reppel — Karting Site
 
-Static React + Vite site, deployed to **GitHub Pages**, with content managed via **Pages CMS** (https://pagescms.org). No other hosting needed.
+Static React + Vite site, deployed to **GitHub Pages**, with content managed via **Sveltia CMS** (git-based, draait op `/admin/`). Geen externe hosting nodig.
 
 ## Local dev
 
