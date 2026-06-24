@@ -56,6 +56,24 @@ export function About() {
             {a.body}
           </div>
 
+          <AnimatePresence initial={false}>
+            {expanded && a.fullStory && (
+              <motion.div
+                key="full-story"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="overflow-hidden"
+              >
+                <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {a.fullStory}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+
           <div className="mt-7 grid grid-cols-2 gap-5">
             {details.map((d) => (
               <div key={d.label} className="flex items-center gap-3">
