@@ -52,6 +52,7 @@ collections:
       - { name: date, label: Datum, widget: date, format: "YYYY-MM-DD" }
       - { name: time, label: Tijd (bv. 09:00 - 18:00), widget: string, required: false }
       - { name: address, label: Adres / locatie, widget: string, required: false }
+      - name: country
         label: Land
         widget: select
         options:
