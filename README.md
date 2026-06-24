@@ -53,3 +53,35 @@ src/
 .pages.yml              # Pages CMS schema
 .github/workflows/      # GitHub Pages deploy
 ```
+
+## Live Instagram feed
+
+The "Laatste Socials" section is populated at build time from your Instagram
+Business/Creator account via the Instagram Graph API. The workflow re-runs
+every 6 hours (cron) so new posts appear without a code change.
+
+### One-time setup
+
+1. **Convert your Instagram account** to *Business* or *Creator* (Instagram app
+   → Settings → Account type and tools) and connect it to a Facebook Page.
+2. **Generate a long-lived access token** with the `instagram_basic` permission.
+   Easiest paths:
+   - Meta's [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+     → select your app → request `instagram_basic` + `pages_show_list` →
+     exchange the short-lived token for a long-lived one (60 days), or
+   - Use a helper like [token.fbcdev.com](https://token.fbcdev.com/) /
+     `developers.facebook.com/tools/accesstoken`.
+3. **Add the token as a GitHub repo secret**:
+   GitHub → repo → *Settings → Secrets and variables → Actions → New repository secret*
+   - Name: `IG_TOKEN`
+   - Value: the long-lived token
+   - *(optional)* `IG_USER_ID` if you want to pin a specific IG user id;
+     otherwise the script uses the token's `/me` account.
+4. Push to `main` (or run the workflow manually under *Actions*). The fetch
+   step writes `content/instagram.json`, which the build embeds as static cards.
+
+### Refreshing the token
+
+Long-lived tokens last ~60 days. Refresh by re-running the exchange flow and
+updating the `IG_TOKEN` secret. The build keeps working with the last
+successful feed if a fetch ever fails — it never blocks the deploy.
