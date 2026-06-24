@@ -88,13 +88,21 @@ export function About() {
             ))}
           </div>
 
-          <a
-            href="#season"
-            className="group mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-6 py-3 rounded hover:brightness-110 transition"
-          >
-            LEES MIJN VOLLEDIGE VERHAAL
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          {a.fullStory && (
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              className="group mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-6 py-3 rounded hover:brightness-110 transition"
+            >
+              {expanded ? "TOON MINDER" : "LEES MIJN VOLLEDIGE VERHAAL"}
+              <ChevronDown
+                size={18}
+                className={`transition-transform ${expanded ? "rotate-180" : ""} group-hover:translate-y-0.5`}
+              />
+            </button>
+          )}
+
         </motion.div>
 
         <motion.div
