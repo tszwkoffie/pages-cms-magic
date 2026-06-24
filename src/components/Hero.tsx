@@ -20,7 +20,7 @@ export function Hero() {
       <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
 
       {/* Desktop: split layout — text left, full kart right */}
-      <div className="relative z-10 mx-auto max-w-[88rem] w-full px-5 pt-28 pb-16 grid lg:grid-cols-[1fr_1.15fr] gap-10 items-center">
+      <div className="relative z-10 mx-auto w-full pl-5 pr-0 pt-28 pb-16 grid lg:grid-cols-[minmax(0,28rem)_1fr] gap-6 items-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
