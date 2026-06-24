@@ -32,7 +32,8 @@ collections:
           - { name: class, label: Klasse, widget: string }
           - { name: nationality, label: Nationaliteit, widget: string }
           - { name: team, label: Team, widget: string }
-          - { name: body, label: Bio, widget: text }
+          - { name: body, label: Korte intro, widget: text }
+          - { name: fullStory, label: Volledige verhaal (uitklap), widget: text, required: false }
 
   - name: races
     label: Racekalender

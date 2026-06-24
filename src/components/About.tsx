@@ -1,10 +1,12 @@
-import { motion } from "framer-motion";
-import { User, Flame, MapPin, Users, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { User, Flame, MapPin, Users, ChevronDown } from "lucide-react";
 import { Flag } from "@/components/Flag";
 import { getAbout, contentImage } from "@/lib/content";
 
 export function About() {
   const a = getAbout();
+  const [expanded, setExpanded] = useState(false);
   const details = [
     { Icon: User, label: "LEEFTIJD", value: a.age },
     { Icon: Flame, label: "KLASSE", value: a.className },
@@ -14,7 +16,7 @@ export function About() {
 
   return (
     <section id="about" className="relative overflow-hidden">
-      <div className="mx-auto max-w-7xl grid lg:grid-cols-[1fr_1.1fr_0.9fr] gap-8 px-5 py-20 items-center">
+      <div className="mx-auto max-w-[88rem] grid lg:grid-cols-[1fr_1.1fr_0.9fr] gap-8 px-5 py-20 items-center">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -54,6 +56,24 @@ export function About() {
             {a.body}
           </div>
 
+          <AnimatePresence initial={false}>
+            {expanded && a.fullStory && (
+              <motion.div
+                key="full-story"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="overflow-hidden"
+              >
+                <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {a.fullStory}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+
           <div className="mt-7 grid grid-cols-2 gap-5">
             {details.map((d) => (
               <div key={d.label} className="flex items-center gap-3">
@@ -68,13 +88,21 @@ export function About() {
             ))}
           </div>
 
-          <a
-            href="#season"
-            className="group mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-6 py-3 rounded hover:brightness-110 transition"
-          >
-            LEES MIJN VOLLEDIGE VERHAAL
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          {a.fullStory && (
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              className="group mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-6 py-3 rounded hover:brightness-110 transition"
+            >
+              {expanded ? "TOON MINDER" : "LEES MIJN VOLLEDIGE VERHAAL"}
+              <ChevronDown
+                size={18}
+                className={`transition-transform ${expanded ? "rotate-180" : ""} group-hover:translate-y-0.5`}
+              />
+            </button>
+          )}
+
         </motion.div>
 
         <motion.div
