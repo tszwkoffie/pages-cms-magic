@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { User, Flame, MapPin, Users, ArrowRight, ChevronDown } from "lucide-react";
+import { User, Flame, MapPin, Users, ChevronDown } from "lucide-react";
 import { Flag } from "@/components/Flag";
 import { getAbout, contentImage } from "@/lib/content";
 
