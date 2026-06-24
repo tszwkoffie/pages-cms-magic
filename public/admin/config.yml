@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: OWNER/REPO        # <-- vervang door je GitHub gebruiker/organisatie en repo naam
+  repo: tszwkoffie/pages-cms-magic        # <-- vervang door je GitHub gebruiker/organisatie en repo naam
   branch: main
   # Sveltia ondersteunt GitHub's eigen device-flow login zonder eigen OAuth-server.
   # Wil je liever de klassieke OAuth flow? Deploy dan sveltia-cms-auth op Cloudflare Workers
@@ -12,8 +12,8 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 # Mooie commit-berichten in de git geschiedenis
-site_url: https://OWNER.github.io/REPO/
-display_url: https://OWNER.github.io/REPO/
+site_url: https://tszwkoffie.github.io/pages-cms-magic/
+display_url: https://tszwkoffie.github.io/pages-cms-magic/
 publish_mode: simple
 
 collections:
