@@ -86,6 +86,8 @@ export function getRaces(): Race[] {
         round: (d.round as string) ?? `ROUND ${i + 1}`,
         track: String(d.track ?? "").toUpperCase(),
         date,
+        time: (d.time as string) ?? "",
+        address: (d.address as string) ?? "",
         country: ((d.country as string) ?? "nl") as Race["country"],
         result: (d.result as string) || "TBD",
         upcoming: Boolean(d.upcoming),
