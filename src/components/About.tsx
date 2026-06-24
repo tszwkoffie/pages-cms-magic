@@ -6,6 +6,7 @@ import { getAbout, contentImage } from "@/lib/content";
 
 export function About() {
   const a = getAbout();
+  const [expanded, setExpanded] = useState(false);
   const details = [
     { Icon: User, label: "LEEFTIJD", value: a.age },
     { Icon: Flame, label: "KLASSE", value: a.className },
