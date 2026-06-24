@@ -8,18 +8,6 @@ export function Hero() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-background"
     >
-      {/* Mobile / small screens: full-bleed image as before */}
-      <img
-        src={asset("images/hero.jpg")}
-        alt=""
-        aria-hidden="true"
-        className="lg:hidden absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "62% center" }}
-      />
-      <div className="lg:hidden absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
-      <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
-
-      {/* Desktop: split layout — text left, full kart right */}
       <div className="relative z-10 mx-auto max-w-7xl w-full px-5 pt-28 pb-16 grid lg:grid-cols-2 gap-10 items-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -75,9 +63,9 @@ export function Hero() {
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="hidden lg:block relative h-[560px] xl:h-[640px]"
+          className="relative h-[280px] sm:h-[380px] lg:h-[560px] xl:h-[640px]"
         >
-          <span className="pointer-events-none absolute -right-6 -top-10 font-heading text-[12rem] xl:text-[14rem] font-bold leading-none text-border/40 select-none">
+          <span className="pointer-events-none absolute right-0 lg:-right-6 -top-6 lg:-top-10 font-heading text-[7rem] sm:text-[10rem] lg:text-[12rem] xl:text-[14rem] font-bold leading-none text-border/40 select-none">
             236
           </span>
           <img
@@ -85,7 +73,6 @@ export function Hero() {
             alt="Jeavy Reppel racing kart number 236 on track"
             className="relative h-full w-full object-contain object-center"
           />
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
         </motion.div>
       </div>
     </section>
