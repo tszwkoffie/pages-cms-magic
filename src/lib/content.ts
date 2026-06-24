@@ -72,14 +72,21 @@ const racesRaw = import.meta.glob("/content/races/*.md", {
 export function getRaces(): Race[] {
   return Object.values(racesRaw)
     .map((raw) => parseFrontmatter(raw).data)
-    .map((d, i) => ({
-      round: (d.round as string) ?? `ROUND ${i + 1}`,
-      track: ((d.track as string) ?? "").toUpperCase(),
-      date: (d.date as string) ?? "",
-      country: ((d.country as string) ?? "nl") as Race["country"],
-      result: (d.result as string) ?? "TBD",
-      upcoming: Boolean(d.upcoming),
-    }))
+    .map((d, i) => {
+      const rawDate = d.date;
+      const date =
+        rawDate instanceof Date
+          ? rawDate.toISOString().slice(0, 10)
+          : String(rawDate ?? "");
+      return {
+        round: (d.round as string) ?? `ROUND ${i + 1}`,
+        track: String(d.track ?? "").toUpperCase(),
+        date,
+        country: ((d.country as string) ?? "nl") as Race["country"],
+        result: (d.result as string) || "TBD",
+        upcoming: Boolean(d.upcoming),
+      };
+    })
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
