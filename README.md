@@ -70,7 +70,7 @@ src/
   lib/asset.ts          # base-path aware asset URLs
   App.tsx               # single-page composition
   main.tsx
-.pages.yml              # Pages CMS schema
+public/admin/config.yml # Sveltia CMS schema
 .github/workflows/      # GitHub Pages deploy
 ```
 
