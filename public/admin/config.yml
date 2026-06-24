@@ -1,0 +1,79 @@
+backend:
+  name: github
+  repo: OWNER/REPO        # <-- vervang door je GitHub gebruiker/organisatie en repo naam
+  branch: main
+  # Sveltia ondersteunt GitHub's eigen device-flow login zonder eigen OAuth-server.
+  # Wil je liever de klassieke OAuth flow? Deploy dan sveltia-cms-auth op Cloudflare Workers
+  # en zet hier: base_url: https://<jouw-worker>.workers.dev
+
+# Waar geüploade afbeeldingen terechtkomen in de repo,
+# en hoe de site er later naar verwijst.
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Mooie commit-berichten in de git geschiedenis
+site_url: https://OWNER.github.io/REPO/
+display_url: https://OWNER.github.io/REPO/
+publish_mode: simple
+
+collections:
+  - name: about
+    label: Over mij
+    files:
+      - name: about
+        label: Over mij
+        file: content/about.md
+        fields:
+          - { name: name, label: Naam, widget: string }
+          - { name: subtitle, label: Sectie-label, widget: string }
+          - { name: portrait, label: Portretfoto, widget: image }
+          - { name: action, label: Actiefoto, widget: image }
+          - { name: age, label: Leeftijd, widget: string }
+          - { name: class, label: Klasse, widget: string }
+          - { name: nationality, label: Nationaliteit, widget: string }
+          - { name: team, label: Team, widget: string }
+          - { name: body, label: Bio, widget: text }
+
+  - name: races
+    label: Racekalender
+    label_singular: Race
+    folder: content/races
+    create: true
+    delete: true
+    extension: md
+    format: yaml-frontmatter
+    slug: "{{slug}}"
+    summary: "{{round}} — {{track}} ({{date}})"
+    sortable_fields: [date, round, track]
+    fields:
+      - { name: round, label: Ronde, widget: string, hint: "bv. RONDE 1" }
+      - { name: track, label: Circuit, widget: string }
+      - { name: date, label: Datum, widget: date, format: "YYYY-MM-DD" }
+      - name: country
+        label: Land
+        widget: select
+        options:
+          - { label: Spanje, value: es }
+          - { label: België, value: be }
+          - { label: Italië, value: it }
+          - { label: Nederland, value: nl }
+      - { name: result, label: Resultaat (bv. P1), widget: string, required: false }
+      - { name: upcoming, label: Aankomende race?, widget: boolean, default: false }
+      - { name: body, label: Notities, widget: text, required: false }
+
+  - name: sponsors
+    label: Sponsors
+    label_singular: Sponsor
+    folder: content/sponsors
+    create: true
+    delete: true
+    extension: md
+    format: yaml-frontmatter
+    slug: "{{slug}}"
+    summary: "{{name}}"
+    sortable_fields: [order, name]
+    fields:
+      - { name: name, label: Naam, widget: string }
+      - { name: logo, label: Logo, widget: image, required: false }
+      - { name: url, label: Website URL, widget: string, required: false }
+      - { name: order, label: Volgorde, widget: number, default: 0, value_type: int }
