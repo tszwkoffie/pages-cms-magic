@@ -10,13 +10,13 @@ export function Season() {
       <div className="mx-auto max-w-7xl px-5 py-20">
         <div className="flex items-end justify-between gap-4 mb-8">
           <h2 className="font-heading text-4xl sm:text-5xl font-bold text-foreground">
-            SEASON <span className="text-primary">2026</span>
+            SEIZOEN <span className="text-primary">2026</span>
           </h2>
           <a
             href="#season"
             className="group inline-flex items-center gap-2 font-heading text-sm tracking-wider text-muted-foreground hover:text-foreground transition"
           >
-            VIEW FULL CALENDAR
+            BEKIJK VOLLEDIGE KALENDER
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
@@ -46,7 +46,7 @@ export function Season() {
               </p>
               <p className={`mt-6 font-heading text-2xl font-bold ${r.upcoming ? "text-primary" : "text-foreground"}`}>
                 {r.upcoming ? (
-                  <span className="text-lg tracking-wider text-primary">UPCOMING</span>
+                  <span className="text-lg tracking-wider text-primary">BINNENKORT</span>
                 ) : (
                   <span className="text-primary">{r.result}</span>
                 )}

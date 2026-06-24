@@ -4,8 +4,8 @@ import { Flag as FlagIcon, Trophy, Timer, Target } from "lucide-react";
 const stats = [
   { Icon: FlagIcon, label: "RACES", value: "14", sub: "2024 - 2026" },
   { Icon: Trophy, label: "PODIUMS", value: "6", sub: "TOP 3 FINISHES" },
-  { Icon: Timer, label: "BEST LAP", value: "48.781", sub: "GENK 2026" },
-  { Icon: Target, label: "2026 GOAL", value: "CHAMPION", sub: "JUNIOR ROTAX" },
+  { Icon: Timer, label: "SNELSTE RONDE", value: "48.781", sub: "GENK 2026" },
+  { Icon: Target, label: "DOEL 2026", value: "KAMPIOEN", sub: "JUNIOR ROTAX" },
 ];
 
 export function Stats() {

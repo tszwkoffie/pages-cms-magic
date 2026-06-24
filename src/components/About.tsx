@@ -6,9 +6,9 @@ import { getAbout, contentImage } from "@/lib/content";
 export function About() {
   const a = getAbout();
   const details = [
-    { Icon: User, label: "AGE", value: a.age },
-    { Icon: Flame, label: "CLASS", value: a.className },
-    { Icon: MapPin, label: "NATIONALITY", value: a.nationality, flag: "nl" as const },
+    { Icon: User, label: "LEEFTIJD", value: a.age },
+    { Icon: Flame, label: "KLASSE", value: a.className },
+    { Icon: MapPin, label: "NATIONALITEIT", value: a.nationality, flag: "nl" as const },
     { Icon: Users, label: "TEAM", value: a.team },
   ];
 
@@ -72,7 +72,7 @@ export function About() {
             href="#season"
             className="group mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-6 py-3 rounded hover:brightness-110 transition"
           >
-            READ MY FULL STORY
+            LEES MIJN VOLLEDIGE VERHAAL
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </a>
         </motion.div>

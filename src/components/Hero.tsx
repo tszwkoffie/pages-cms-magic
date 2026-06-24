@@ -27,7 +27,7 @@ export function Hero() {
           transition={{ duration: 0.8 }}
         >
           <p className="font-heading text-sm sm:text-base font-semibold tracking-[0.3em] text-primary mb-4">
-            JUNIOR ROTAX DRIVER
+            JUNIOR ROTAX COUREUR
           </p>
           <h1 className="font-heading font-bold leading-[0.85] tracking-tight text-balance">
             <span className="block text-6xl sm:text-7xl md:text-8xl text-foreground">JEAVY</span>
@@ -36,21 +36,21 @@ export function Hero() {
             </span>
           </h1>
           <p className="mt-6 font-heading text-xl sm:text-2xl tracking-wide text-muted-foreground">
-            Speed. Dedication. Progress.
+            Snelheid. Toewijding. Vooruitgang.
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <a
               href="#season"
               className="group inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-7 py-3.5 rounded hover:brightness-110 transition"
             >
-              FOLLOW MY SEASON
+              VOLG MIJN SEIZOEN
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#contact"
               className="inline-flex items-center border border-border text-foreground font-heading font-semibold tracking-wider px-7 py-3.5 rounded hover:bg-foreground hover:text-background transition"
             >
-              BECOME A PARTNER
+              WORD PARTNER
             </a>
           </div>
           <div className="mt-9 flex items-center gap-3">
