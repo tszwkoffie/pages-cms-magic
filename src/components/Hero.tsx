@@ -9,7 +9,7 @@ export function Hero() {
         src={asset("images/hero.jpg")}
         alt="Jeavy Reppel racing kart number 236 on track"
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "62% center" }}
+        style={{ objectPosition: "right center" }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
