@@ -20,7 +20,7 @@ export function Hero() {
       <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
 
       {/* Desktop: split layout — text left, full kart right */}
-      <div className="relative z-10 mx-auto w-full pl-5 pr-0 pt-28 pb-16 grid lg:grid-cols-[minmax(0,28rem)_1fr] gap-6 items-center">
+      <div className="relative z-10 mx-auto max-w-[88rem] w-full px-5 pt-28 pb-16 grid lg:grid-cols-[1fr_1.15fr] gap-10 items-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,15 +75,15 @@ export function Hero() {
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="hidden lg:block relative h-[640px] xl:h-[760px] w-full"
+          className="hidden lg:block relative h-[560px] xl:h-[640px]"
         >
-          <span className="pointer-events-none absolute right-8 top-4 font-heading text-[14rem] xl:text-[18rem] font-bold leading-none text-border/40 select-none">
+          <span className="pointer-events-none absolute -right-6 -top-10 font-heading text-[12rem] xl:text-[14rem] font-bold leading-none text-border/40 select-none">
             236
           </span>
           <img
             src={asset("images/hero.jpg")}
             alt="Jeavy Reppel racing kart number 236 on track"
-            className="relative h-full w-full object-contain object-right"
+            className="relative h-full w-full object-contain object-center"
           />
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
         </motion.div>
