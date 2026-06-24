@@ -29,6 +29,7 @@ export interface About {
   nationality: string;
   team: string;
   body: string;
+  fullStory: string;
 }
 
 const aboutRaw = import.meta.glob("/content/about.md", {
@@ -50,6 +51,7 @@ export function getAbout(): About {
     nationality: (data.nationality as string) ?? "Dutch",
     team: (data.team as string) ?? "CS KART",
     body: body.trim(),
+    fullStory: ((data.fullStory as string) ?? "").trim(),
   };
 }
 
