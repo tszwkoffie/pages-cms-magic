@@ -22,27 +22,47 @@ The Vite `base` is set automatically by the workflow (`VITE_BASE` from `actions/
 
 Add a `public/CNAME` file with your domain and configure it in **Settings → Pages**. With a custom domain the base becomes `/`, no other changes needed.
 
-## Editing content (Pages CMS)
+## Editing content (Sveltia CMS)
 
-All editable content lives in `/content/` as markdown files.
+All editable content lives in `/content/` as markdown files and wordt beheerd
+via **Sveltia CMS** — een git-based admin die volledig in de browser draait,
+geserveerd vanaf je eigen site op `/<repo>/admin/`. Geen externe hosting nodig.
 
-1. Go to https://app.pagescms.org and sign in with GitHub.
-2. **Add project** → pick this repo.
-3. Pages CMS reads `.pages.yml` and shows three collections:
-   - **About** — bio, photos, age/class/nationality/team
-   - **Race calendar** — one entry per round (track, date, country, result)
-   - **Sponsors** — name, logo, URL, display order
-4. Save = a commit to `main` = the deploy workflow rebuilds the site automatically.
+### Eenmalige setup
 
-Image uploads land in `public/images/uploads/`.
+1. Open `public/admin/config.yml` en vervang `OWNER/REPO` (en de twee
+   `site_url` regels) door je eigen GitHub gebruiker + repo naam.
+2. Maak een **GitHub OAuth App** aan zodat Sveltia kan inloggen op je repo:
+   - GitHub → *Settings → Developer settings → OAuth Apps → New OAuth App*
+   - Homepage URL: `https://<user>.github.io/<repo>/`
+   - Authorization callback URL: `https://auth.sveltia.dev/callback`
+     *(gratis publieke OAuth proxy van Sveltia — geen eigen server nodig)*
+   - Noteer **Client ID** en **Client Secret**.
+3. Ga naar [auth.sveltia.dev](https://auth.sveltia.dev) en registreer je
+   OAuth App één keer met de twee waarden uit stap 2. Klaar.
+
+Liever zelf hosten? Deploy [`sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth)
+op een gratis Cloudflare Worker en zet de URL als `backend.base_url` in
+`config.yml`.
+
+### Dagelijks gebruik
+
+1. Ga naar `https://<user>.github.io/<repo>/admin/`.
+2. Log in met je GitHub account → je ziet de collecties **Over mij**,
+   **Racekalender** en **Sponsors**.
+3. Wijzig of voeg toe → **Publish** → Sveltia commit naar `main` →
+   GitHub Actions rebuildt de site automatisch (1-2 min).
+
+Geüploade afbeeldingen landen in `public/images/uploads/`.
 
 ## Project structure
 
 ```
-content/                # markdown content (edited via Pages CMS)
+content/                # markdown content (edited via Sveltia CMS)
   about.md
   races/*.md
   sponsors/*.md
+public/admin/           # Sveltia CMS admin (config.yml + index.html)
 public/images/          # static images (hero, paddock, etc.)
 src/
   components/           # React components
