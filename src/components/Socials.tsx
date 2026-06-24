@@ -1,48 +1,68 @@
-import { Instagram, Youtube, Heart } from "lucide-react";
-import { asset } from "@/lib/asset";
+import { Instagram, ExternalLink } from "lucide-react";
+import instagramFeed from "@content/instagram.json";
 
-type Post = {
-  platform: "instagram" | "youtube";
-  handle: string;
+type IgPost = {
+  id: string;
   caption: string;
+  media_type: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM" | string;
   image: string;
-  meta: string;
+  permalink: string;
+  timestamp: string;
 };
 
-const posts: Post[] = [
-  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "P1 in Valencia! Wat een weekend op de baan 🏆", image: "images/hero.jpg", meta: "2 dagen geleden" },
-  { platform: "youtube", handle: "Jeavy Reppel Karting", caption: "Onboard ronde — voorbereiding circuit Genk", image: "images/helmet.jpg", meta: "5 dagen geleden" },
-  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "Paddock klaar met de #236 — Junior Rotax", image: "images/paddock.jpg", meta: "1 week geleden" },
-  { platform: "instagram", handle: "@jeavy_reppel.karting", caption: "Nieuw seizoen, nieuwe doelen. CS55 Racing 🔴", image: "images/profile.png", meta: "2 weken geleden" },
-];
+type Feed = {
+  fetched_at: string | null;
+  note?: string;
+  posts: IgPost[];
+};
 
-function PostCard({ post }: { post: Post }) {
-  const Icon = post.platform === "instagram" ? Instagram : Youtube;
+const feed = instagramFeed as Feed;
+
+function timeAgo(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const days = Math.floor(diff / 86_400_000);
+  if (days < 1) return "vandaag";
+  if (days === 1) return "1 dag geleden";
+  if (days < 7) return `${days} dagen geleden`;
+  const weeks = Math.floor(days / 7);
+  if (weeks === 1) return "1 week geleden";
+  if (weeks < 5) return `${weeks} weken geleden`;
+  const months = Math.floor(days / 30);
+  return months <= 1 ? "1 maand geleden" : `${months} maanden geleden`;
+}
+
+function PostCard({ post }: { post: IgPost }) {
+  const caption = post.caption?.split("\n")[0] ?? "";
   return (
     <a
-      href={post.platform === "instagram" ? "https://instagram.com" : "https://youtube.com"}
+      href={post.permalink}
       target="_blank"
       rel="noopener noreferrer"
       className="group relative w-[280px] sm:w-[320px] shrink-0 overflow-hidden rounded-lg border border-border bg-background"
     >
-      <div className="relative h-44 w-full overflow-hidden">
+      <div className="relative h-44 w-full overflow-hidden bg-muted">
         <img
-          src={asset(post.image)}
-          alt={post.caption}
+          src={post.image}
+          alt={caption || "Instagram post"}
+          loading="lazy"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
         <span className="absolute top-3 left-3 inline-flex items-center justify-center h-8 w-8 rounded-full bg-primary text-primary-foreground">
-          <Icon size={16} />
+          <Instagram size={16} />
         </span>
       </div>
       <div className="p-4">
-        <p className="font-heading text-sm font-semibold tracking-wider text-foreground">{post.handle}</p>
-        <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">{post.caption}</p>
+        <p className="font-heading text-sm font-semibold tracking-wider text-foreground">
+          @jeavy_reppel.karting
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">
+          {caption || "Bekijk op Instagram"}
+        </p>
         <div className="mt-3 flex items-center justify-between">
-          <span className="text-xs text-muted-foreground">{post.meta}</span>
+          <span className="text-xs text-muted-foreground">{timeAgo(post.timestamp)}</span>
           <span className="inline-flex items-center gap-1 text-xs text-primary">
-            <Heart size={13} /> Nieuwste
+            <ExternalLink size={12} /> BEKIJK
           </span>
         </div>
       </div>
@@ -51,6 +71,11 @@ function PostCard({ post }: { post: Post }) {
 }
 
 export function Socials() {
+  const posts = feed.posts ?? [];
+  const hasPosts = posts.length > 0;
+  // Duplicate the array for a seamless marquee loop.
+  const loop = hasPosts ? [...posts, ...posts] : [];
+
   return (
     <section id="socials" className="border-t border-border bg-card">
       <div className="mx-auto max-w-7xl px-5 py-14">
@@ -59,7 +84,7 @@ export function Socials() {
             LAATSTE <span className="text-primary">SOCIALS</span>
           </h2>
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/jeavy_reppel.karting"
             target="_blank"
             rel="noopener noreferrer"
             className="font-heading text-sm font-semibold tracking-wider text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
@@ -68,15 +93,28 @@ export function Socials() {
             VOLG @JEAVY_REPPEL.KARTING
           </a>
         </div>
-        <div className="relative overflow-hidden">
-          <div className="flex w-max animate-marquee gap-6">
-            {[...posts, ...posts].map((p, i) => (
-              <PostCard key={`${p.handle}-${i}`} post={p} />
-            ))}
+
+        {hasPosts ? (
+          <div className="relative overflow-hidden">
+            <div className="flex w-max animate-marquee gap-6">
+              {loop.map((p, i) => (
+                <PostCard key={`${p.id}-${i}`} post={p} />
+              ))}
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-card to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-card to-transparent" />
           </div>
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-card to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-card to-transparent" />
-        </div>
+        ) : (
+          <div className="rounded-lg border border-dashed border-border bg-background/40 p-10 text-center">
+            <Instagram size={32} className="mx-auto text-primary" />
+            <p className="mt-3 font-heading text-sm tracking-wider text-foreground">
+              INSTAGRAM-FEED LAADT BIJ DE EERSTE DEPLOY
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Stel het <code>IG_TOKEN</code> repo-secret in en push naar <code>main</code> — zie README.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
