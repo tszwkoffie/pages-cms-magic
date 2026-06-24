@@ -75,15 +75,15 @@ export function Hero() {
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="hidden lg:block relative h-[560px] xl:h-[640px]"
+          className="hidden lg:block relative h-[640px] xl:h-[760px] w-full"
         >
-          <span className="pointer-events-none absolute -right-6 -top-10 font-heading text-[12rem] xl:text-[14rem] font-bold leading-none text-border/40 select-none">
+          <span className="pointer-events-none absolute right-8 top-4 font-heading text-[14rem] xl:text-[18rem] font-bold leading-none text-border/40 select-none">
             236
           </span>
           <img
             src={asset("images/hero.jpg")}
             alt="Jeavy Reppel racing kart number 236 on track"
-            className="relative h-full w-full object-contain object-center"
+            className="relative h-full w-full object-contain object-right"
           />
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
         </motion.div>
