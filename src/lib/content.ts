@@ -60,6 +60,8 @@ export interface Race {
   round: string;
   track: string;
   date: string; // ISO yyyy-mm-dd
+  time: string;
+  address: string;
   country: "es" | "be" | "it" | "nl";
   result: string;
   upcoming: boolean;
