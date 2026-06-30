@@ -5,8 +5,12 @@ export function Partners() {
   const loop = [...sponsors, ...sponsors];
   return (
     <section id="partners" className="border-t border-border bg-card">
-      <div className="mx-auto max-w-7xl px-5 py-14">
-        <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mb-8">
+      <div className="mx-auto max-w-[88rem] px-5 py-16">
+        <div className="flex items-center gap-4 mb-10">
+          <span className="font-heading text-xs tracking-[0.4em] text-accent">03 / PARTNERS</span>
+          <span className="flex-1 h-px bg-border" />
+        </div>
+        <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground mb-10">
           ONZE <span className="text-primary">PARTNERS</span>
         </h2>
         <div className="relative overflow-hidden">
@@ -16,10 +20,10 @@ export function Partners() {
                 <img
                   src={contentImage(s.logo)}
                   alt={s.name}
-                  className="h-14 sm:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  className="h-14 sm:h-16 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity"
                 />
               ) : (
-                <span className="font-heading text-2xl sm:text-3xl font-bold tracking-wider text-muted-foreground/70 hover:text-foreground transition-colors whitespace-nowrap">
+                <span className="font-heading italic text-2xl sm:text-3xl font-bold tracking-wider text-muted-foreground/70 hover:text-foreground transition-colors whitespace-nowrap">
                   {s.name}
                 </span>
               );

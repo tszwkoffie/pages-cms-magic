@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { User, Flame, MapPin, Users, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Flag } from "@/components/Flag";
 import { getAbout, contentImage } from "@/lib/content";
 
@@ -8,127 +8,114 @@ export function About() {
   const a = getAbout();
   const [expanded, setExpanded] = useState(false);
   const details = [
-    { Icon: User, label: "LEEFTIJD", value: a.age },
-    { Icon: Flame, label: "KLASSE", value: a.className },
-    { Icon: MapPin, label: "NATIONALITEIT", value: a.nationality, flag: "nl" as const },
-    { Icon: Users, label: "TEAM", value: a.team },
+    { label: "LEEFTIJD", value: a.age },
+    { label: "KLASSE", value: a.className },
+    { label: "NATIONALITEIT", value: a.nationality, flag: "nl" as const },
+    { label: "TEAM", value: a.team },
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden">
-      <div className="mx-auto max-w-[88rem] grid lg:grid-cols-[1fr_1.1fr_0.9fr] gap-8 px-5 py-20 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative h-[440px] sm:h-[560px]"
-        >
-          <img
-            src={contentImage(a.action)}
-            alt="Jeavy Reppel in his racing helmet"
-            className="absolute inset-0 h-full w-full object-cover"
-            style={{
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
-              WebkitMaskComposite: "source-in",
-              maskImage:
-                "linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
-              maskComposite: "intersect",
-            }}
-          />
-        </motion.div>
+    <section id="about" className="relative overflow-hidden border-t border-border">
+      <div className="mx-auto max-w-[88rem] px-5 pt-20 pb-24">
+        {/* Ferrari-style eyebrow */}
+        <div className="flex items-center gap-4 mb-10">
+          <span className="font-heading text-xs tracking-[0.4em] text-accent">01 / OVER MIJ</span>
+          <span className="flex-1 h-px bg-border" />
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <p className="font-heading text-sm font-semibold tracking-[0.3em] text-primary">
-            {a.subtitle}
-          </p>
-          <h2 className="mt-2 font-heading text-4xl sm:text-5xl font-bold text-foreground">
-            {a.name}
-          </h2>
+        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 items-start">
+          {/* Image column with overlapping editorial title */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+              <img
+                src={contentImage(a.action)}
+                alt="Jeavy Reppel in his racing helmet"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+              <span className="absolute top-4 left-4 inline-flex items-center gap-2 font-heading text-[10px] tracking-[0.3em] text-foreground/90">
+                <span className="inline-block h-px w-6 bg-accent" /> #236
+              </span>
+            </div>
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -bottom-8 -right-4 display-italic text-outline text-[10rem] sm:text-[14rem] leading-none select-none"
+            >
+              JR
+            </span>
+          </motion.div>
 
-          <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
-            {a.body}
-          </div>
+          {/* Text column */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <h2 className="display-italic text-[3.2rem] sm:text-[4.5rem] text-foreground">
+              {a.name.split(" ")[0]}{" "}
+              <span className="text-primary">{a.name.split(" ").slice(1).join(" ")}</span>
+            </h2>
 
-          <AnimatePresence initial={false}>
-            {expanded && a.fullStory && (
-              <motion.div
-                key="full-story"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="overflow-hidden"
-              >
-                <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {a.fullStory}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+            <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line text-[15px]">
+              {a.body}
+            </div>
 
+            <AnimatePresence initial={false}>
+              {expanded && a.fullStory && (
+                <motion.div
+                  key="full-story"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line text-[15px]">
+                    {a.fullStory}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-          <div className="mt-7 grid grid-cols-2 gap-5">
-            {details.map((d) => (
-              <div key={d.label} className="flex items-center gap-3">
-                {d.flag ? <Flag country={d.flag} /> : <d.Icon className="text-primary shrink-0" size={22} />}
-                <div>
-                  <p className="font-heading text-[11px] tracking-widest text-muted-foreground">
+            {/* Spec grid */}
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 border-t border-border">
+              {details.map((d) => (
+                <div key={d.label} className="border-b sm:border-b-0 border-border [&:not(:last-child)]:sm:border-r py-5 px-2 relative">
+                  <span className="absolute top-0 left-0 h-[2px] w-6 bg-accent" />
+                  <p className="font-heading text-[10px] tracking-[0.3em] text-muted-foreground">
                     {d.label}
                   </p>
-                  <p className="font-heading text-base font-semibold text-foreground">{d.value}</p>
+                  <div className="mt-2 flex items-center gap-2">
+                    {d.flag && <Flag country={d.flag} />}
+                    <p className="font-heading text-base font-semibold text-foreground">{d.value}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {a.fullStory && (
-            <button
-              type="button"
-              onClick={() => setExpanded((v) => !v)}
-              aria-expanded={expanded}
-              className="group mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-6 py-3 rounded hover:brightness-110 transition"
-            >
-              {expanded ? "TOON MINDER" : "LEES MIJN VOLLEDIGE VERHAAL"}
-              <ChevronDown
-                size={18}
-                className={`transition-transform ${expanded ? "rotate-180" : ""} group-hover:translate-y-0.5`}
-              />
-            </button>
-          )}
-
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative h-[440px] sm:h-[560px] hidden md:block"
-        >
-          <span className="pointer-events-none absolute -right-2 top-2 font-heading text-[9rem] font-bold leading-none text-border/50 select-none">
-            236
-          </span>
-          <img
-            src={contentImage(a.portrait)}
-            alt="Studio portrait of Jeavy Reppel"
-            className="relative h-full w-full object-cover object-top"
-            style={{
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-              WebkitMaskComposite: "source-in",
-              maskImage:
-                "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-              maskComposite: "intersect",
-            }}
-          />
-        </motion.div>
+            {a.fullStory && (
+              <button
+                type="button"
+                onClick={() => setExpanded((v) => !v)}
+                aria-expanded={expanded}
+                className="group mt-8 inline-flex items-center gap-2 border border-accent text-accent font-heading font-semibold tracking-[0.25em] px-6 py-3 hover:bg-accent hover:text-accent-foreground transition"
+              >
+                {expanded ? "TOON MINDER" : "LEES MIJN VOLLEDIGE VERHAAL"}
+                <ChevronDown
+                  size={18}
+                  className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+                />
+              </button>
+            )}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

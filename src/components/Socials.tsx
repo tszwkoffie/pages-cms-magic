@@ -78,18 +78,22 @@ export function Socials() {
 
   return (
     <section id="socials" className="border-t border-border bg-card">
-      <div className="mx-auto max-w-7xl px-5 py-14">
+      <div className="mx-auto max-w-[88rem] px-5 py-16">
+        <div className="flex items-center gap-4 mb-10">
+          <span className="font-heading text-xs tracking-[0.4em] text-accent">04 / SOCIALS</span>
+          <span className="flex-1 h-px bg-border" />
+        </div>
         <div className="flex flex-wrap items-end justify-between gap-3 mb-8">
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground">
+          <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground">
             LAATSTE <span className="text-primary">SOCIALS</span>
           </h2>
           <a
             href="https://instagram.com/jeavy_reppel.karting"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-heading text-sm font-semibold tracking-wider text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
+            className="font-heading text-xs font-semibold tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
           >
-            <Instagram size={16} className="text-primary" />
+            <Instagram size={16} className="text-accent" />
             VOLG @JEAVY_REPPEL.KARTING
           </a>
         </div>

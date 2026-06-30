@@ -24,26 +24,31 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-background/90 backdrop-blur border-b border-border" : "bg-transparent"
+        scrolled ? "bg-background/85 backdrop-blur" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto max-w-7xl flex items-center justify-between px-5 py-4">
-        <a href="#home" className="flex items-center gap-2 shrink-0">
-          <span className="font-heading text-2xl font-bold leading-none">
-            <span className="text-primary">J</span>
+      {/* CS55-style top racing stripe */}
+      <div className="h-[2px] section-divider" />
+
+      <nav className="mx-auto max-w-[88rem] flex items-center justify-between px-5 py-4">
+        <a href="#home" className="flex items-center gap-3 shrink-0">
+          <span className="font-heading text-2xl font-bold leading-none tracking-tight">
+            <span className="text-accent">J</span>
             <span className="text-foreground">R</span>
+            <span className="text-primary">.</span>
           </span>
-          <span className="hidden sm:block font-heading text-sm font-semibold tracking-[0.25em] text-foreground">
-            JEAVY REPPEL
+          <span className="hidden sm:flex items-center gap-2 font-heading text-[11px] font-semibold tracking-[0.35em] text-muted-foreground">
+            <span className="inline-block h-1 w-6 bg-accent" />
+            #236 · JUNIOR ROTAX
           </span>
         </a>
 
-        <ul className="hidden lg:flex items-center gap-7">
+        <ul className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.label}>
               <a
                 href={l.href}
-                className="font-heading text-sm font-medium tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+                className="font-heading text-[13px] font-medium tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors"
               >
                 {l.label}
               </a>
@@ -53,9 +58,10 @@ export function Navbar() {
 
         <a
           href="#contact"
-          className="hidden lg:inline-flex bg-primary text-primary-foreground font-heading text-sm font-semibold tracking-wider px-5 py-2.5 rounded hover:brightness-110 transition"
+          className="hidden lg:inline-flex items-center gap-2 border border-accent text-accent font-heading text-[12px] font-semibold tracking-[0.25em] px-4 py-2.5 hover:bg-accent hover:text-accent-foreground transition"
         >
           WORD PARTNER
+          <span className="inline-block w-2 h-2 bg-accent group-hover:bg-accent-foreground" />
         </a>
 
         <button

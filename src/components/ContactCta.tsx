@@ -4,47 +4,54 @@ import { asset } from "@/lib/asset";
 
 export function ContactCta() {
   return (
-    <section id="contact" className="relative overflow-hidden">
+    <section id="contact" className="relative overflow-hidden border-t border-border">
       <img
         src={asset("images/paddock.jpg")}
         alt="Jeavy Reppel in the paddock"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-l from-background/60 via-background/80 to-background" />
-      <div className="relative z-10 mx-auto max-w-7xl px-5 py-24 md:py-32">
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
+
+      <div className="relative z-10 mx-auto max-w-[88rem] px-5 py-28 md:py-36">
+        <div className="flex items-center gap-4 mb-10">
+          <span className="font-heading text-xs tracking-[0.4em] text-accent">05 / CONTACT</span>
+          <span className="flex-1 h-px bg-border" />
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-xl md:mr-auto"
+          className="max-w-2xl"
         >
-          <h2 className="font-heading text-4xl sm:text-6xl font-bold leading-[0.95] text-foreground text-balance">
-            LATEN WE
+          <h2 className="display-italic text-[3rem] sm:text-[5.5rem] text-foreground">
+            LATEN WE DE
             <br />
-            DE TOEKOMST <span className="text-primary">SAMEN BOUWEN.</span>
+            TOEKOMST{" "}
+            <span className="text-primary">SAMEN BOUWEN.</span>
           </h2>
-          <p className="mt-5 text-muted-foreground leading-relaxed">
+          <p className="mt-6 text-muted-foreground leading-relaxed max-w-lg">
             Interesse in een partnership met Jeavy Reppel? Neem contact op en word onderdeel van het avontuur.
           </p>
           <a
             href="mailto:info@jeavyreppel.com"
-            className="group mt-7 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider px-7 py-3.5 rounded hover:brightness-110 transition"
+            className="group mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-[0.25em] px-7 py-3.5 hover:brightness-110 transition"
           >
             NEEM CONTACT OP
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </a>
-          <ul className="mt-8 space-y-3">
+          <ul className="mt-10 space-y-3">
             <li className="flex items-center gap-3 text-muted-foreground">
-              <Instagram size={18} className="text-primary" />
+              <Instagram size={18} className="text-accent" />
               <span>@jeavy_reppel.karting</span>
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
-              <Youtube size={18} className="text-primary" />
+              <Youtube size={18} className="text-accent" />
               <span>Jeavy Reppel Karting</span>
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
-              <Mail size={18} className="text-primary" />
+              <Mail size={18} className="text-accent" />
               <span>info@jeavyreppel.com</span>
             </li>
           </ul>

@@ -10,16 +10,21 @@ export function Season() {
 
   return (
     <section id="season" className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-5 py-20">
-        <div className="flex items-end justify-between gap-4 mb-8">
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold text-foreground">
+      <div className="mx-auto max-w-[88rem] px-5 py-20">
+        <div className="flex items-center gap-4 mb-10">
+          <span className="font-heading text-xs tracking-[0.4em] text-accent">02 / KALENDER</span>
+          <span className="flex-1 h-px bg-border" />
+        </div>
+
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <h2 className="display-italic text-[3.2rem] sm:text-[5rem] text-foreground">
             SEIZOEN <span className="text-primary">2026</span>
           </h2>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
-            className="group inline-flex items-center gap-2 font-heading text-sm tracking-wider text-muted-foreground hover:text-foreground transition"
+            className="group inline-flex items-center gap-2 font-heading text-xs tracking-[0.3em] text-muted-foreground hover:text-foreground transition"
           >
             {open ? "VERBERG VOLLEDIGE KALENDER" : "BEKIJK VOLLEDIGE KALENDER"}
             <ChevronDown
@@ -29,7 +34,7 @@ export function Season() {
           </button>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {rounds.map((r, i) => (
             <motion.div
               key={`${r.round}-${r.track}`}
@@ -38,27 +43,29 @@ export function Season() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
               whileHover={{ y: -4 }}
-              className={`rounded-lg border bg-card p-5 transition-colors ${
-                r.upcoming ? "border-primary" : "border-border hover:border-muted-foreground/40"
+              className={`relative bg-card p-6 border-t-2 transition-colors ${
+                r.upcoming ? "border-t-primary" : "border-t-accent"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-heading text-xs tracking-widest text-muted-foreground">
+                <span className="font-heading text-[10px] tracking-[0.3em] text-muted-foreground">
                   {r.round}
                 </span>
                 <Flag country={r.country} />
               </div>
-              <h3 className="mt-4 font-heading text-2xl font-bold text-foreground">{r.track}</h3>
-              <p className="font-heading text-xs tracking-wider text-muted-foreground">
+              <h3 className="mt-6 font-heading italic text-2xl font-bold text-foreground leading-tight">
+                {r.track}
+              </h3>
+              <p className="mt-1 font-heading text-[11px] tracking-[0.25em] text-muted-foreground">
                 {formatRaceDate(r.date)}
               </p>
-              <p className={`mt-6 font-heading text-2xl font-bold ${r.upcoming ? "text-primary" : "text-foreground"}`}>
+              <div className="mt-8 pt-4 border-t border-border">
                 {r.upcoming ? (
-                  <span className="text-lg tracking-wider text-primary">BINNENKORT</span>
+                  <span className="font-heading text-sm tracking-[0.25em] text-primary">BINNENKORT</span>
                 ) : (
-                  <span className="text-primary">{r.result}</span>
+                  <span className="font-heading italic text-3xl font-bold text-primary">{r.result}</span>
                 )}
-              </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -73,25 +80,28 @@ export function Season() {
               transition={{ duration: 0.35, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <div className="mt-12 border-t border-border pt-10">
-                <h3 className="font-heading text-2xl font-bold text-foreground mb-6">
+              <div className="mt-14 border-t border-border pt-10">
+                <h3 className="display-italic text-3xl text-foreground mb-8">
                   VOLLEDIGE <span className="text-primary">KALENDER</span>
                 </h3>
-                <div className="space-y-4">
+                <div className="divide-y divide-border border-y border-border">
                   {rounds.map((r) => (
                     <div
                       key={`full-${r.round}-${r.track}`}
-                      className={`rounded-lg border bg-card p-5 sm:p-6 grid gap-4 sm:grid-cols-[auto_1fr_auto] sm:items-center ${
-                        r.upcoming ? "border-primary" : "border-border"
-                      }`}
+                      className="relative grid gap-4 sm:grid-cols-[auto_1fr_auto] sm:items-center py-5 px-2 sm:px-4"
                     >
-                      <div className="flex items-center gap-4">
+                      <span
+                        className={`absolute left-0 top-0 bottom-0 w-[3px] ${
+                          r.upcoming ? "bg-primary" : "bg-accent"
+                        }`}
+                      />
+                      <div className="flex items-center gap-4 pl-3">
                         <Flag country={r.country} />
                         <div>
-                          <span className="font-heading text-xs tracking-widest text-muted-foreground">
+                          <span className="font-heading text-[10px] tracking-[0.3em] text-muted-foreground">
                             {r.round}
                           </span>
-                          <h4 className="font-heading text-xl font-bold text-foreground leading-tight">
+                          <h4 className="font-heading italic text-xl font-bold text-foreground leading-tight">
                             {r.track}
                           </h4>
                         </div>
@@ -99,20 +109,18 @@ export function Season() {
 
                       <div className="grid gap-2 text-sm text-muted-foreground sm:grid-cols-3">
                         <div className="flex items-center gap-2">
-                          <Calendar size={14} className="text-primary" />
-                          <span className="font-heading tracking-wider">
-                            {formatRaceDate(r.date)}
-                          </span>
+                          <Calendar size={14} className="text-accent" />
+                          <span className="font-heading tracking-wider">{formatRaceDate(r.date)}</span>
                         </div>
                         {r.time && (
                           <div className="flex items-center gap-2">
-                            <Clock size={14} className="text-primary" />
+                            <Clock size={14} className="text-accent" />
                             <span className="font-heading tracking-wider">{r.time}</span>
                           </div>
                         )}
                         {r.address && (
-                          <div className="flex items-center gap-2 sm:col-span-1">
-                            <MapPin size={14} className="text-primary shrink-0" />
+                          <div className="flex items-center gap-2">
+                            <MapPin size={14} className="text-accent shrink-0" />
                             <span>{r.address}</span>
                           </div>
                         )}
@@ -120,13 +128,9 @@ export function Season() {
 
                       <div className="sm:text-right">
                         {r.upcoming ? (
-                          <span className="font-heading text-sm tracking-wider text-primary">
-                            BINNENKORT
-                          </span>
+                          <span className="font-heading text-sm tracking-[0.25em] text-primary">BINNENKORT</span>
                         ) : (
-                          <span className="font-heading text-2xl font-bold text-primary">
-                            {r.result}
-                          </span>
+                          <span className="font-heading italic text-2xl font-bold text-primary">{r.result}</span>
                         )}
                       </div>
                     </div>
