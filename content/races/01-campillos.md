@@ -1,10 +1,10 @@
 ---
-round: RONDE 1
-track: Campillos
+round: KART4FUN RONDE 1
+track: Kartcircuit de Landsard
 date: 2026-02-15
-time: 09:00 - 18:00
-address: Circuito Internacional de Campillos, Málaga, Spanje
-country: es
-result: P2
+time: 28 maart - 2026
+address: Landsardseweg 47 Eindhoven
+country: nl
+result: P5
 upcoming: false
 ---
