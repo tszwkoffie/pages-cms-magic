@@ -123,6 +123,45 @@ export function getSponsors(): Sponsor[] {
     .sort((a, b) => a.order - b.order);
 }
 
+// ---------- Socials ----------
+export interface SocialPost {
+  image: string;
+  caption: string;
+  link: string;
+  date: string;
+  order: number;
+}
+
+const socialsRaw = import.meta.glob("/content/socials/*.md", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+}) as Record<string, string>;
+
+export function getSocials(): SocialPost[] {
+  return Object.values(socialsRaw)
+    .map((raw) => parseFrontmatter(raw).data)
+    .map((d) => {
+      const rawDate = d.date;
+      const date =
+        rawDate instanceof Date
+          ? rawDate.toISOString().slice(0, 10)
+          : String(rawDate ?? "");
+      return {
+        image: (d.image as string) ?? "",
+        caption: (d.caption as string) ?? "",
+        link: (d.link as string) ?? "https://instagram.com/jeavy_reppel.karting",
+        date,
+        order: Number(d.order ?? 0),
+      };
+    })
+    .filter((p) => p.image)
+    .sort((a, b) => {
+      if (a.order !== b.order) return a.order - b.order;
+      return b.date.localeCompare(a.date);
+    });
+}
+
 // Format a yyyy-mm-dd date as "15 FEB 2026"
 export function formatRaceDate(iso: string): string {
   if (!iso) return "";
