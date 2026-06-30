@@ -1,7 +1,7 @@
 # Jeavy Reppel — Karting Site
 
 
-<!-- sync trigger: 2026-06-30b -->
+<!-- sync trigger: 2026-06-30c -->
 
 Static React + Vite site, deployed to **GitHub Pages**, with content managed via **Sveltia CMS** (git-based, draait op `/admin/`). Geen externe hosting nodig.
 
