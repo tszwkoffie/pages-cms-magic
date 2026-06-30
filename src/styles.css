@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0b;
+  --background: #08080a;
   --foreground: #f5f5f5;
-  --card: #111113;
+  --card: #0f0f12;
   --card-foreground: #f5f5f5;
-  --muted: #1a1a1d;
-  --muted-foreground: #9a9a9f;
-  --border: #232327;
+  --muted: #15151a;
+  --muted-foreground: #8a8a90;
+  --border: #1f1f24;
   --primary: #e01020;
   --primary-foreground: #ffffff;
-  --radius: 0.5rem;
+  --accent: #f5d000;
+  --accent-foreground: #08080a;
+  --radius: 0.25rem;
 }
 
 @theme inline {
@@ -23,6 +25,8 @@
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --font-sans: "Inter", system-ui, sans-serif;
   --font-heading: "Oswald", Impact, sans-serif;
   --radius: var(--radius);
@@ -39,16 +43,66 @@ body {
   font-family: "Oswald", Impact, sans-serif;
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
+/* Ferrari-style oversized editorial display */
+.display-italic {
+  font-family: "Oswald", Impact, sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.82;
+  text-transform: uppercase;
 }
 
+/* Outlined text for layered editorial typography */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+}
+.text-outline-strong {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--foreground);
+}
 
+/* Thin CS55-style racing stripe accents */
+.stripe-accent {
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 8%,
+    var(--accent) 8%,
+    var(--accent) 9%,
+    transparent 9%,
+    transparent 11%,
+    var(--accent) 11%,
+    var(--accent) 11.4%,
+    transparent 11.4%
+  );
+}
+
+.section-divider {
+  background: linear-gradient(90deg, var(--accent) 0 18%, var(--border) 18% 100%);
+  height: 2px;
+}
+
+@keyframes marquee {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
 .animate-marquee {
   animation: marquee 30s linear infinite;
+}
+
+@keyframes scrollHint {
+  0%   { transform: translateY(0);   opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+.scroll-hint::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 14px;
+  margin: 6px auto 0;
+  background: var(--foreground);
+  animation: scrollHint 1.6s ease-in-out infinite;
 }
