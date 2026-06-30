@@ -1,25 +1,11 @@
 import { Instagram, ExternalLink } from "lucide-react";
-import instagramFeed from "@content/instagram.json";
-
-type IgPost = {
-  id: string;
-  caption: string;
-  media_type: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM" | string;
-  image: string;
-  permalink: string;
-  timestamp: string;
-};
-
-type Feed = {
-  fetched_at: string | null;
-  note?: string;
-  posts: IgPost[];
-};
-
-const feed = instagramFeed as Feed;
+import { getSocials } from "@/lib/content";
+import { contentImage } from "@/lib/content";
 
 function timeAgo(iso: string): string {
+  if (!iso) return "";
   const diff = Date.now() - new Date(iso).getTime();
+  if (isNaN(diff)) return "";
   const days = Math.floor(diff / 86_400_000);
   if (days < 1) return "vandaag";
   if (days === 1) return "1 dag geleden";
@@ -31,11 +17,19 @@ function timeAgo(iso: string): string {
   return months <= 1 ? "1 maand geleden" : `${months} maanden geleden`;
 }
 
-function PostCard({ post }: { post: IgPost }) {
+type Post = {
+  id: string;
+  image: string;
+  caption: string;
+  link: string;
+  date: string;
+};
+
+function PostCard({ post }: { post: Post }) {
   const caption = post.caption?.split("\n")[0] ?? "";
   return (
     <a
-      href={post.permalink}
+      href={post.link}
       target="_blank"
       rel="noopener noreferrer"
       className="group relative w-[280px] sm:w-[320px] shrink-0 overflow-hidden rounded-lg border border-border bg-background"
@@ -60,7 +54,7 @@ function PostCard({ post }: { post: IgPost }) {
           {caption || "Bekijk op Instagram"}
         </p>
         <div className="mt-3 flex items-center justify-between">
-          <span className="text-xs text-muted-foreground">{timeAgo(post.timestamp)}</span>
+          <span className="text-xs text-muted-foreground">{timeAgo(post.date)}</span>
           <span className="inline-flex items-center gap-1 text-xs text-primary">
             <ExternalLink size={12} /> BEKIJK
           </span>
@@ -71,7 +65,13 @@ function PostCard({ post }: { post: IgPost }) {
 }
 
 export function Socials() {
-  const posts = feed.posts ?? [];
+  const posts: Post[] = getSocials().map((p, i) => ({
+    id: `${p.date}-${i}`,
+    image: contentImage(p.image),
+    caption: p.caption,
+    link: p.link,
+    date: p.date,
+  }));
   const hasPosts = posts.length > 0;
   // Duplicate the array for a seamless marquee loop.
   const loop = hasPosts ? [...posts, ...posts] : [];
@@ -112,10 +112,10 @@ export function Socials() {
           <div className="rounded-lg border border-dashed border-border bg-background/40 p-10 text-center">
             <Instagram size={32} className="mx-auto text-primary" />
             <p className="mt-3 font-heading text-sm tracking-wider text-foreground">
-              INSTAGRAM-FEED LAADT BIJ DE EERSTE DEPLOY
+              NOG GEEN POSTS
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
-              Stel het <code>IG_TOKEN</code> repo-secret in en push naar <code>main</code> — zie README.
+              Voeg posts toe via de CMS (<code>/admin</code>) onder "Socials".
             </p>
           </div>
         )}

@@ -1,17 +1,20 @@
+# Decap CMS configuratie
+# Docs: https://decapcms.org/docs/configuration-options/
+
 backend:
   name: github
   repo: tszwkoffie/pages-cms-magic        # <-- vervang door je GitHub gebruiker/organisatie en repo naam
   branch: main
-  # Sveltia ondersteunt GitHub's eigen device-flow login zonder eigen OAuth-server.
-  # Wil je liever de klassieke OAuth flow? Deploy dan sveltia-cms-auth op Cloudflare Workers
-  # en zet hier: base_url: https://<jouw-worker>.workers.dev
+  # Gratis publieke OAuth-proxy voor GitHub login zonder eigen server.
+  # Alternatief: deploy je eigen oauth-provider en wijzig base_url.
+  base_url: https://decapbridge.com
+  auth_endpoint: https://decapbridge.com/oauth/authorize
 
 # Waar geüploade afbeeldingen terechtkomen in de repo,
 # en hoe de site er later naar verwijst.
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-# Mooie commit-berichten in de git geschiedenis
 site_url: https://tszwkoffie.github.io/pages-cms-magic/
 display_url: https://tszwkoffie.github.io/pages-cms-magic/
 publish_mode: simple
@@ -36,7 +39,7 @@ collections:
           - { name: fullStory, label: Volledige verhaal (uitklap), widget: text, required: false }
 
   - name: races
-    label: Racekalender
+    label: Seizoen / Racekalender
     label_singular: Race
     folder: content/races
     create: true
@@ -80,3 +83,21 @@ collections:
       - { name: logo, label: Logo, widget: image, required: false }
       - { name: url, label: Website URL, widget: string, required: false }
       - { name: order, label: Volgorde, widget: number, default: 0, value_type: int }
+
+  - name: socials
+    label: Socials (Instagram posts)
+    label_singular: Post
+    folder: content/socials
+    create: true
+    delete: true
+    extension: md
+    format: yaml-frontmatter
+    slug: "{{date}}-{{slug}}"
+    summary: "{{caption}}"
+    sortable_fields: [date, order]
+    fields:
+      - { name: image, label: Afbeelding, widget: image }
+      - { name: caption, label: Caption / tekst, widget: text }
+      - { name: link, label: Link naar Instagram post, widget: string, required: false }
+      - { name: date, label: Datum, widget: date, format: "YYYY-MM-DD" }
+      - { name: order, label: Volgorde (lager = eerst), widget: number, default: 0, value_type: int, required: false }
