@@ -1,7 +1,7 @@
 backend:
   name: git-gateway
   repo: tszwkoffie/pages-cms-magic
-  branch: main
+  branch: jr
   auth_type: pkce
   base_url: https://auth.decapbridge.com
   auth_endpoint: /sites/958e340f-f0d5-405b-89b3-9a51486ce217/pkce
