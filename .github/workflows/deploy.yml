@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, jr]
   workflow_dispatch:
   schedule:
     # Refresh the Instagram feed every 6 hours.
