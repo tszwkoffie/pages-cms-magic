@@ -33,12 +33,12 @@ export function Navbar() {
       <nav className="mx-auto max-w-[88rem] flex items-center justify-between px-5 py-4">
         <a href="#home" className="flex items-center gap-3 shrink-0">
           <span className="font-heading text-2xl font-bold leading-none tracking-tight">
-            <span className="text-accent">J</span>
-            <span className="text-foreground">R</span>
+            <span className="text-foreground">J</span>
+            <span className="text-primary">R</span>
             <span className="text-primary">.</span>
           </span>
           <span className="hidden sm:flex items-center gap-2 font-heading text-[11px] font-semibold tracking-[0.35em] text-muted-foreground">
-            <span className="inline-block h-1 w-6 bg-accent" />
+            <span className="inline-block h-1 w-6 bg-primary" />
             #236 · JUNIOR ROTAX
           </span>
         </a>
