@@ -17,15 +17,19 @@ export function Partners() {
           <div className="flex w-max animate-marquee gap-14 items-center">
             {loop.map((s, i) => {
               const inner = s.logo ? (
-                <img
-                  src={contentImage(s.logo)}
-                  alt={s.name}
-                  className="h-14 sm:h-16 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity"
-                />
+                <div className="flex items-center justify-center h-20 w-40 sm:h-24 sm:w-48">
+                  <img
+                    src={contentImage(s.logo)}
+                    alt={s.name}
+                    className="max-h-full max-w-full object-contain opacity-60 hover:opacity-100 transition-opacity"
+                  />
+                </div>
               ) : (
-                <span className="font-heading italic text-2xl sm:text-3xl font-bold tracking-wider text-muted-foreground/70 hover:text-foreground transition-colors whitespace-nowrap">
-                  {s.name}
-                </span>
+                <div className="flex items-center justify-center h-20 w-40 sm:h-24 sm:w-48">
+                  <span className="font-heading italic text-xl sm:text-2xl font-bold tracking-wider text-muted-foreground/70 hover:text-foreground transition-colors whitespace-nowrap text-center">
+                    {s.name}
+                  </span>
+                </div>
               );
               return s.url ? (
                 <a
