@@ -1,81 +1,6 @@
-import { Instagram, ExternalLink } from "lucide-react";
-import { getSocials } from "@/lib/content";
-import { contentImage } from "@/lib/content";
-
-function timeAgo(iso: string): string {
-  if (!iso) return "";
-  const diff = Date.now() - new Date(iso).getTime();
-  if (isNaN(diff)) return "";
-  const days = Math.floor(diff / 86_400_000);
-  if (days < 1) return "vandaag";
-  if (days === 1) return "1 dag geleden";
-  if (days < 7) return `${days} dagen geleden`;
-  const weeks = Math.floor(days / 7);
-  if (weeks === 1) return "1 week geleden";
-  if (weeks < 5) return `${weeks} weken geleden`;
-  const months = Math.floor(days / 30);
-  return months <= 1 ? "1 maand geleden" : `${months} maanden geleden`;
-}
-
-type Post = {
-  id: string;
-  image: string;
-  caption: string;
-  link: string;
-  date: string;
-};
-
-function PostCard({ post }: { post: Post }) {
-  const caption = post.caption?.split("\n")[0] ?? "";
-  return (
-    <a
-      href={post.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative w-[280px] sm:w-[320px] shrink-0 overflow-hidden rounded-lg border border-border bg-background"
-    >
-      <div className="relative h-44 w-full overflow-hidden bg-muted">
-        <img
-          src={post.image}
-          alt={caption || "Instagram post"}
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-        <span className="absolute top-3 left-3 inline-flex items-center justify-center h-8 w-8 rounded-full bg-primary text-primary-foreground">
-          <Instagram size={16} />
-        </span>
-      </div>
-      <div className="p-4">
-        <p className="font-heading text-sm font-semibold tracking-wider text-foreground">
-          @jeavy_reppel.karting
-        </p>
-        <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">
-          {caption || "Bekijk op Instagram"}
-        </p>
-        <div className="mt-3 flex items-center justify-between">
-          <span className="text-xs text-muted-foreground">{timeAgo(post.date)}</span>
-          <span className="inline-flex items-center gap-1 text-xs text-primary">
-            <ExternalLink size={12} /> BEKIJK
-          </span>
-        </div>
-      </div>
-    </a>
-  );
-}
+import { Instagram } from "lucide-react";
 
 export function Socials() {
-  const posts: Post[] = getSocials().map((p, i) => ({
-    id: `${p.date}-${i}`,
-    image: contentImage(p.image),
-    caption: p.caption,
-    link: p.link,
-    date: p.date,
-  }));
-  const hasPosts = posts.length > 0;
-  // Duplicate the array for a seamless marquee loop.
-  const loop = hasPosts ? [...posts, ...posts] : [];
-
   return (
     <section id="socials" className="border-t border-border bg-card">
       <div className="mx-auto max-w-[88rem] px-5 py-16">
@@ -98,27 +23,10 @@ export function Socials() {
           </a>
         </div>
 
-        {hasPosts ? (
-          <div className="relative overflow-hidden">
-            <div className="flex w-max animate-marquee gap-6">
-              {loop.map((p, i) => (
-                <PostCard key={`${p.id}-${i}`} post={p} />
-              ))}
-            </div>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-card to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-card to-transparent" />
-          </div>
-        ) : (
-          <div className="rounded-lg border border-dashed border-border bg-background/40 p-10 text-center">
-            <Instagram size={32} className="mx-auto text-primary" />
-            <p className="mt-3 font-heading text-sm tracking-wider text-foreground">
-              NOG GEEN POSTS
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Voeg posts toe via de CMS (<code>/admin</code>) onder "Socials".
-            </p>
-          </div>
-        )}
+        <div
+          className="elfsight-app-a12fc2e2-f479-4a27-898c-88921cf435d4"
+          data-elfsight-app-lazy
+        />
       </div>
     </section>
   );
