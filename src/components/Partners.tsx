@@ -17,7 +17,13 @@ export function Partners() {
           ONZE <span className="text-primary">PARTNERS</span>
         </h2>
         <div className="relative overflow-hidden">
-          <div className="flex w-max animate-marquee gap-14 items-center">
+          <div
+            className={
+              isStatic
+                ? "flex flex-wrap justify-center gap-10 sm:gap-16 items-center"
+                : "flex w-max animate-marquee gap-14 items-center"
+            }
+          >
             {loop.map((s, i) => {
               const inner = s.logo ? (
                 <div className="flex items-center justify-center h-20 w-40 sm:h-24 sm:w-48">
@@ -51,8 +57,12 @@ export function Partners() {
               );
             })}
           </div>
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-card to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-card to-transparent" />
+          {!isStatic && (
+            <>
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-card to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-card to-transparent" />
+            </>
+          )}
         </div>
       </div>
     </section>
