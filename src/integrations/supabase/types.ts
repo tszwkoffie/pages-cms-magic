@@ -14,16 +14,201 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      races: {
+        Row: {
+          address: string
+          country: string
+          created_at: string
+          id: string
+          notes: string
+          race_date: string | null
+          result: string
+          round: string
+          sort_order: number
+          time: string
+          track: string
+          upcoming: boolean
+          updated_at: string
+        }
+        Insert: {
+          address?: string
+          country?: string
+          created_at?: string
+          id?: string
+          notes?: string
+          race_date?: string | null
+          result?: string
+          round?: string
+          sort_order?: number
+          time?: string
+          track?: string
+          upcoming?: boolean
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          country?: string
+          created_at?: string
+          id?: string
+          notes?: string
+          race_date?: string | null
+          result?: string
+          round?: string
+          sort_order?: number
+          time?: string
+          track?: string
+          upcoming?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_about: {
+        Row: {
+          action: string
+          age: string
+          class: string
+          created_at: string
+          full_story: string
+          id: string
+          intro: string
+          name: string
+          nationality: string
+          portrait: string
+          subtitle: string
+          team: string
+          updated_at: string
+        }
+        Insert: {
+          action?: string
+          age?: string
+          class?: string
+          created_at?: string
+          full_story?: string
+          id?: string
+          intro?: string
+          name?: string
+          nationality?: string
+          portrait?: string
+          subtitle?: string
+          team?: string
+          updated_at?: string
+        }
+        Update: {
+          action?: string
+          age?: string
+          class?: string
+          created_at?: string
+          full_story?: string
+          id?: string
+          intro?: string
+          name?: string
+          nationality?: string
+          portrait?: string
+          subtitle?: string
+          team?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      socials: {
+        Row: {
+          caption: string
+          created_at: string
+          id: string
+          image: string
+          link: string
+          post_date: string | null
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          caption?: string
+          created_at?: string
+          id?: string
+          image?: string
+          link?: string
+          post_date?: string | null
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          caption?: string
+          created_at?: string
+          id?: string
+          image?: string
+          link?: string
+          post_date?: string | null
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      sponsors: {
+        Row: {
+          created_at: string
+          id: string
+          logo: string
+          name: string
+          sort_order: number
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          logo?: string
+          name: string
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          logo?: string
+          name?: string
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "editor"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +335,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "editor"],
+    },
   },
 } as const
