@@ -38,9 +38,9 @@ export function Hero() {
       {/* Editorial content block, bottom-left */}
       <div className="relative z-10 mx-auto max-w-[88rem] w-full px-5 pb-20 pt-32 lg:pb-28">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 48 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-5xl"
         >
           <div className="flex items-center gap-3 mb-6">
