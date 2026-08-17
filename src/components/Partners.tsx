@@ -2,7 +2,10 @@ import { getSponsors, contentImage } from "@/lib/content";
 
 export function Partners() {
   const sponsors = getSponsors();
-  const loop = [...sponsors, ...sponsors];
+  // With only a handful of partners a scrolling marquee looks empty —
+  // show them as a calm, centered row instead.
+  const isStatic = sponsors.length <= 4;
+  const loop = isStatic ? sponsors : [...sponsors, ...sponsors];
   return (
     <section id="partners" className="border-t border-border bg-card">
       <div className="mx-auto max-w-[88rem] px-5 py-16">
