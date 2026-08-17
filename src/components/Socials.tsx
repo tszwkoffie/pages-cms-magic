@@ -3,12 +3,12 @@ import { Instagram, Linkedin } from "lucide-react";
 export function Socials() {
   return (
     <section id="socials" className="border-t border-border bg-card">
-      <div className="mx-auto max-w-[88rem] px-5 py-16">
-        <div className="flex items-center gap-4 mb-10">
+      <div className="mx-auto max-w-[88rem] px-5 py-28 md:py-32">
+        <div className="flex items-center gap-4 mb-14">
           <span className="font-heading text-xs tracking-[0.4em] text-accent">04 / SOCIALS</span>
           <span className="flex-1 h-px bg-border" />
         </div>
-        <div className="flex flex-wrap items-end justify-between gap-3 mb-8">
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
           <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground">
             LAATSTE <span className="text-primary">SOCIALS</span>
           </h2>

@@ -17,14 +17,14 @@ export function About() {
 
   return (
     <section id="about" className="relative overflow-hidden border-t border-border">
-      <div className="mx-auto max-w-[88rem] px-5 pt-20 pb-24">
+      <div className="mx-auto max-w-[88rem] px-5 pt-28 pb-32 md:pt-36 md:pb-40">
         {/* Ferrari-style eyebrow */}
-        <div className="flex items-center gap-4 mb-10">
+        <div className="flex items-center gap-4 mb-14">
           <span className="font-heading text-xs tracking-[0.4em] text-accent">01 / OVER MIJ</span>
           <span className="flex-1 h-px bg-border" />
         </div>
 
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 items-start">
+        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 lg:gap-24 items-start">
           {/* Image column with overlapping editorial title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
