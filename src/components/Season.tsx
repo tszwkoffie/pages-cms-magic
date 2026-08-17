@@ -10,8 +10,10 @@ export function Season() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section id="season" className="border-t border-border">
-      <div className="mx-auto max-w-[88rem] px-5 py-28 md:py-36">
+    <section id="season" className="relative overflow-hidden">
+      {/* Subtle background gradient wash that overlaps with previous section */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background pointer-events-none" />
+      <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:py-36">
         <div className="flex items-center gap-4 mb-14">
           <span className="font-heading text-xs tracking-[0.4em] text-accent">02 / KALENDER</span>
           <span className="flex-1 h-px bg-border" />
