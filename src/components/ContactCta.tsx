@@ -4,7 +4,7 @@ import { asset } from "@/lib/asset";
 
 export function ContactCta() {
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-border">
+    <section id="contact" className="relative overflow-hidden">
       <img
         src={asset("images/paddock.jpg")}
         alt="Jeavy Reppel in the paddock"
@@ -12,6 +12,8 @@ export function ContactCta() {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
+      {/* Top wash that overlaps the previous section */}
+      <div className="absolute inset-0 bg-gradient-to-b from-card via-transparent to-transparent pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[88rem] px-5 py-28 md:py-36">
         <div className="flex items-center gap-4 mb-10">

@@ -2,8 +2,15 @@ import { Instagram, Linkedin } from "lucide-react";
 
 export function Socials() {
   return (
-    <section id="socials" className="border-t border-border bg-card">
-      <div className="mx-auto max-w-[88rem] px-5 py-28 md:py-32">
+    <section id="socials" className="relative overflow-hidden bg-card">
+      {/* Oversized social watermark bleeding into adjacent sections */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-16 right-0 display-italic text-outline-strong text-[8rem] sm:text-[14rem] lg:text-[18rem] leading-none select-none opacity-[0.03]"
+      >
+        SOCIALS
+      </span>
+      <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:py-32">
         <div className="flex items-center gap-4 mb-14">
           <span className="font-heading text-xs tracking-[0.4em] text-accent">04 / SOCIALS</span>
           <span className="flex-1 h-px bg-border" />

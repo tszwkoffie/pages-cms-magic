@@ -16,8 +16,8 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden border-t border-border">
-      <div className="mx-auto max-w-[88rem] px-5 pt-28 pb-32 md:pt-36 md:pb-40">
+    <section id="about" className="relative overflow-hidden pt-10 md:pt-20">
+      <div className="mx-auto max-w-[88rem] px-5 pt-28 pb-32 md:pt-40 md:pb-40">
         {/* Ferrari-style eyebrow */}
         <div className="flex items-center gap-4 mb-14">
           <span className="font-heading text-xs tracking-[0.4em] text-accent">01 / OVER MIJ</span>
@@ -33,7 +33,7 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="img-zoom relative aspect-[4/5] overflow-hidden bg-muted">
+            <div className="img-zoom relative aspect-[4/5] overflow-hidden bg-muted lg:-ml-10">
               <img
                 src={contentImage(a.action)}
                 alt="Jeavy Reppel in his racing helmet"
@@ -46,7 +46,7 @@ export function About() {
             </div>
             <span
               aria-hidden
-              className="pointer-events-none absolute -bottom-8 -right-4 display-italic text-outline text-[10rem] sm:text-[14rem] leading-none select-none"
+              className="pointer-events-none absolute -bottom-10 -right-8 sm:-right-12 display-italic text-outline text-[10rem] sm:text-[16rem] leading-none select-none"
             >
               JR
             </span>

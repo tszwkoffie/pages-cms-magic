@@ -122,6 +122,63 @@ body::after {
   height: 2px;
 }
 
+/* Overlapping section transitions */
+.section-overlap-up {
+  position: relative;
+  z-index: 10;
+  margin-top: -6rem;
+}
+
+.section-bleed-top {
+  position: relative;
+}
+
+.section-bleed-top::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: -6rem;
+  bottom: -6rem;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Angled / diagonal transition between sections */
+.diagonal-top {
+  clip-path: polygon(0 4rem, 100% 0, 100% 100%, 0 100%);
+  padding-top: 7rem;
+}
+
+.diagonal-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), 0 100%);
+  padding-bottom: 7rem;
+}
+
+/* Soft gradient washes between sections */
+.transition-wash-up {
+  background: linear-gradient(to bottom, transparent 0%, var(--background) 45%);
+}
+
+.transition-wash-down {
+  background: linear-gradient(to top, transparent 0%, var(--background) 45%);
+}
+
+/* Large editorial type that bleeds across sections */
+.section-bleed-text {
+  position: relative;
+}
+
+.section-bleed-text .bleed-heading {
+  position: absolute;
+  top: -4rem;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.06;
+}
+
 @keyframes marquee {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }

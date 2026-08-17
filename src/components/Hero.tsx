@@ -15,9 +15,9 @@ export function Hero() {
         className="absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: "55% center" }}
       />
-      {/* Cinematic gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/40" />
+      {/* Cinematic gradient overlays — stronger bottom wash so next section flows in */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-transparent to-background/50" />
 
       {/* Side ticker — Ferrari-style vertical label */}
       <div className="hidden lg:flex absolute left-5 top-1/2 -translate-y-1/2 z-10 items-center gap-3 rotate-[-90deg] origin-left">
@@ -36,7 +36,7 @@ export function Hero() {
       </span>
 
       {/* Editorial content block, bottom-left */}
-      <div className="relative z-10 mx-auto max-w-[88rem] w-full px-5 pb-20 pt-32 lg:pb-28">
+      <div className="relative z-10 mx-auto max-w-[88rem] w-full px-5 pb-28 pt-32 lg:pb-40">
         <motion.div
           initial={{ opacity: 0, y: 48 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export function Hero() {
       </div>
 
       {/* Scroll hint */}
-      <div className="hidden lg:block absolute bottom-6 right-8 z-10 scroll-hint text-[10px] tracking-[0.4em] text-muted-foreground font-heading">
+      <div className="hidden lg:block absolute bottom-10 right-8 z-10 scroll-hint text-[10px] tracking-[0.4em] text-muted-foreground font-heading">
         SCROLL
       </div>
     </section>

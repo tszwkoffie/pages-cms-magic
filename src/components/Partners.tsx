@@ -8,8 +8,15 @@ export function Partners() {
   const isStatic = sponsors.length <= 4;
   const loop = isStatic ? sponsors : [...sponsors, ...sponsors];
   return (
-    <section id="partners" className="border-t border-border bg-card">
-      <div className="mx-auto max-w-[88rem] px-5 py-28 md:py-32">
+    <section id="partners" className="relative overflow-hidden bg-card">
+      {/* Oversized outlined watermark that bleeds into adjacent sections */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-20 left-0 display-italic text-outline-strong text-[10rem] sm:text-[16rem] lg:text-[22rem] leading-none select-none opacity-[0.03]"
+      >
+        PARTNERS
+      </span>
+      <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:py-32">
         <div className="flex items-center gap-4 mb-14">
           <span className="font-heading text-xs tracking-[0.4em] text-accent">03 / PARTNERS</span>
           <span className="flex-1 h-px bg-border" />
