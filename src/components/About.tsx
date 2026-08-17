@@ -32,7 +32,7 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+            <div className="img-zoom relative aspect-[4/5] overflow-hidden bg-muted">
               <img
                 src={contentImage(a.action)}
                 alt="Jeavy Reppel in his racing helmet"

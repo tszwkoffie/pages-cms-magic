@@ -127,7 +127,10 @@ body::after {
   to   { transform: translateX(0); }
 }
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 55s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 @keyframes scrollHint {

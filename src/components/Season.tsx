@@ -38,11 +38,11 @@ export function Season() {
           {rounds.map((r, i) => (
             <motion.div
               key={`${r.round}-${r.track}`}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              whileHover={{ y: -4 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6 }}
               className={`relative bg-card p-6 border-t-2 transition-colors ${
                 r.upcoming ? "border-t-primary" : "border-t-accent"
               }`}
