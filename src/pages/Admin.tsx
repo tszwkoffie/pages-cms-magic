@@ -5,7 +5,7 @@ import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteData } from "@/lib/site-data";
 
-type Tab = "about" | "races" | "sponsors" | "socials";
+type Tab = "about" | "races" | "sponsors";
 
 type Row = Record<string, string | number | boolean | null>;
 
@@ -86,7 +86,6 @@ export default function Admin() {
                 ["about", "OVER MIJ"],
                 ["races", "SEIZOEN"],
                 ["sponsors", "SPONSORS"],
-                ["socials", "SOCIALS"],
               ] as [Tab, string][]
             ).map(([key, text]) => (
               <button
@@ -157,22 +156,6 @@ export default function Admin() {
                 { key: "name", label: "NAAM" },
                 { key: "logo", label: "LOGO URL", wide: true },
                 { key: "url", label: "WEBSITE", wide: true },
-                { key: "sort_order", label: "VOLGORDE", type: "number" },
-              ]}
-            />
-          )}
-          {tab === "socials" && (
-            <CollectionEditor
-              table="socials"
-              onStatus={setStatus}
-              orderBy="sort_order"
-              title="Socials"
-              blank={{ image: "", caption: "", link: "", post_date: "", sort_order: 0 }}
-              fields={[
-                { key: "image", label: "AFBEELDING URL", wide: true },
-                { key: "caption", label: "CAPTION", wide: true, type: "textarea" },
-                { key: "link", label: "LINK", wide: true },
-                { key: "post_date", label: "DATUM", type: "date" },
                 { key: "sort_order", label: "VOLGORDE", type: "number" },
               ]}
             />
@@ -347,7 +330,7 @@ function CollectionEditor({
   title,
   onStatus,
 }: {
-  table: "races" | "sponsors" | "socials";
+  table: "races" | "sponsors";
   fields: Field[];
   blank: Row;
   orderBy: string;
