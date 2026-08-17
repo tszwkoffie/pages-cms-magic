@@ -1,7 +1,8 @@
-import { getSponsors, contentImage } from "@/lib/content";
+import { contentImage } from "@/lib/content";
+import { useSponsors } from "@/lib/site-data";
 
 export function Partners() {
-  const sponsors = getSponsors();
+  const sponsors = useSponsors();
   // With only a handful of partners a scrolling marquee looks empty —
   // show them as a calm, centered row instead.
   const isStatic = sponsors.length <= 4;

@@ -4,9 +4,6 @@ on:
   push:
     branches: [main, jr]
   workflow_dispatch:
-  schedule:
-    # Refresh the Instagram feed every 6 hours.
-    - cron: "0 */6 * * *"
 
 permissions:
   contents: read
@@ -28,11 +25,6 @@ jobs:
       - uses: actions/configure-pages@v5
         id: pages
       - run: bun install --frozen-lockfile
-      - name: Fetch latest Instagram posts
-        env:
-          IG_TOKEN: ${{ secrets.IG_TOKEN }}
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-        run: bun scripts/fetch-instagram.mjs
       - name: Build
         env:
           # Vite needs to know the sub-path (e.g. "/repo-name/") for project Pages.

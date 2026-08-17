@@ -2,10 +2,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Flag } from "@/components/Flag";
-import { getAbout, contentImage } from "@/lib/content";
+import { contentImage } from "@/lib/content";
+import { useAbout } from "@/lib/site-data";
 
 export function About() {
-  const a = getAbout();
+  const a = useAbout();
   const [expanded, setExpanded] = useState(false);
   const details = [
     { label: "LEEFTIJD", value: a.age },
