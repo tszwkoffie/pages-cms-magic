@@ -280,7 +280,7 @@ function AboutEditor({ onStatus }: { onStatus: (s: string) => void }) {
   const set = (k: string, v: string) => setRow({ ...row, [k]: v });
 
   const save = async () => {
-    const { error } = await supabase.from("site_about").update(row).eq("id", row.id as string);
+    const { error } = await supabase.from("site_about").update(row as never).eq("id", row.id as string);
     onStatus(error ? `Fout: ${error.message}` : "Opgeslagen ✓");
     if (!error) await refresh();
   };
@@ -377,7 +377,7 @@ function CollectionEditor({
     Object.keys(payload).forEach((k) => {
       if (payload[k] === "") payload[k] = k.endsWith("_date") ? null : "";
     });
-    const { error } = await supabase.from(table).update(payload).eq("id", row.id as string);
+    const { error } = await supabase.from(table).update(payload as never).eq("id", row.id as string);
     onStatus(error ? `Fout: ${error.message}` : "Opgeslagen ✓");
     if (!error) await refresh();
   };
@@ -387,7 +387,7 @@ function CollectionEditor({
     Object.keys(payload).forEach((k) => {
       if (payload[k] === "" && k.endsWith("_date")) payload[k] = null;
     });
-    const { error } = await supabase.from(table).insert(payload);
+    const { error } = await supabase.from(table).insert(payload as never);
     if (error) return onStatus(`Fout: ${error.message}`);
     await load();
     await refresh();
