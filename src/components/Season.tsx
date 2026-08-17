@@ -2,10 +2,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, MapPin, Clock, Calendar } from "lucide-react";
 import { Flag } from "@/components/Flag";
-import { getRaces, formatRaceDate } from "@/lib/content";
+import { formatRaceDate } from "@/lib/content";
+import { useRaces } from "@/lib/site-data";
 
 export function Season() {
-  const rounds = getRaces();
+  const rounds = useRaces();
   const [open, setOpen] = useState(false);
 
   return (
