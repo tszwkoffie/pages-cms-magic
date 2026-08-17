@@ -20,7 +20,7 @@ export function Stats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.08 }}
-            className="relative flex items-center gap-4 px-6 py-8 border-border [&:not(:nth-child(2n))]:border-r md:border-r md:last:border-r-0 [&:nth-child(-n+2)]:border-b md:[&:nth-child(-n+2)]:border-b-0"
+            className="relative flex items-center gap-4 px-6 py-12 border-border [&:not(:nth-child(2n))]:border-r md:border-r md:last:border-r-0 [&:nth-child(-n+2)]:border-b md:[&:nth-child(-n+2)]:border-b-0"
           >
             <span className="absolute top-0 left-0 h-[2px] w-8 bg-accent" />
             <s.Icon className="text-primary shrink-0" size={32} strokeWidth={1.5} />

@@ -9,19 +9,19 @@ export function Partners() {
   const loop = isStatic ? sponsors : [...sponsors, ...sponsors];
   return (
     <section id="partners" className="border-t border-border bg-card">
-      <div className="mx-auto max-w-[88rem] px-5 py-16">
-        <div className="flex items-center gap-4 mb-10">
+      <div className="mx-auto max-w-[88rem] px-5 py-28 md:py-32">
+        <div className="flex items-center gap-4 mb-14">
           <span className="font-heading text-xs tracking-[0.4em] text-accent">03 / PARTNERS</span>
           <span className="flex-1 h-px bg-border" />
         </div>
-        <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground mb-10">
+        <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground mb-14">
           ONZE <span className="text-primary">PARTNERS</span>
         </h2>
         <div className="relative overflow-hidden">
           <div
             className={
               isStatic
-                ? "flex flex-wrap justify-center gap-10 sm:gap-16 items-center"
+                ? "flex flex-wrap justify-center gap-14 sm:gap-24 items-center"
                 : "flex w-max animate-marquee gap-14 items-center"
             }
           >

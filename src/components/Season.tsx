@@ -11,13 +11,13 @@ export function Season() {
 
   return (
     <section id="season" className="border-t border-border">
-      <div className="mx-auto max-w-[88rem] px-5 py-20">
-        <div className="flex items-center gap-4 mb-10">
+      <div className="mx-auto max-w-[88rem] px-5 py-28 md:py-36">
+        <div className="flex items-center gap-4 mb-14">
           <span className="font-heading text-xs tracking-[0.4em] text-accent">02 / KALENDER</span>
           <span className="flex-1 h-px bg-border" />
         </div>
 
-        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-14">
           <h2 className="display-italic text-[3.2rem] sm:text-[5rem] text-foreground">
             SEIZOEN <span className="text-primary">2026</span>
           </h2>
@@ -35,7 +35,7 @@ export function Season() {
           </button>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {rounds.map((r, i) => (
             <motion.div
               key={`${r.round}-${r.track}`}
