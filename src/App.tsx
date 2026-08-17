@@ -23,9 +23,27 @@ export default function App() {
           <span className="font-heading text-sm tracking-widest text-muted-foreground">
             <span className="text-primary">JEAVY</span> REPPEL · #236
           </span>
-          <span className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Jeavy Reppel. All rights reserved.
-          </span>
+          <div className="flex items-center gap-5">
+            <a
+              href="https://instagram.com/jeavy_reppel.karting"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-heading text-[11px] tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+            >
+              INSTAGRAM
+            </a>
+            <a
+              href="https://www.linkedin.com/in/jeavy-reppel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-heading text-[11px] tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+            >
+              LINKEDIN
+            </a>
+            <span className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} Jeavy Reppel
+            </span>
+          </div>
         </div>
       </footer>
     </main>
