@@ -122,8 +122,8 @@ body::after {
   background: linear-gradient(
     90deg,
     var(--accent) 0 18%,
-    color-mix(in srgb, var(--border) 70%, transparent) 18% 55%,
-    transparent 55% 100%
+    color-mix(in srgb, var(--foreground) 22%, transparent) 18%,
+    color-mix(in srgb, var(--foreground) 14%, transparent) 100%
   );
   height: 2px;
 }
