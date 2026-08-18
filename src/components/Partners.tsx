@@ -1,12 +1,12 @@
 import { contentImage } from "@/lib/content";
-import { useSponsors } from "@/lib/site-data";
+import { useSponsors, useTexts } from "@/lib/site-data";
 
 export function Partners() {
   const sponsors = useSponsors();
-  // With only a handful of partners a scrolling marquee looks empty —
-  // show them as a calm, centered row instead.
-  const isStatic = sponsors.length <= 4;
-  const loop = isStatic ? sponsors : [...sponsors, ...sponsors];
+  const t = useTexts();
+  const title = t("partners_title");
+  const [first, ...rest] = title.split(" ");
+
   return (
     <section id="partners" className="relative overflow-hidden bg-card">
       {/* Oversized outlined watermark that bleeds into adjacent sections */}
@@ -20,58 +20,51 @@ export function Partners() {
         <div className="mb-14 flex items-center gap-4 border-x border-primary/25 px-4 py-2">
           <span className="font-tech text-[10px] tracking-[0.2em] text-accent">03 / PARTNERS</span>
           <span className="h-px flex-1 bg-border" />
-          <span className="hidden font-tech text-[10px] tracking-[0.2em] text-muted-foreground sm:inline">SUPPORT_NETWORK.LOG</span>
+          <span className="hidden font-tech text-[10px] tracking-[0.2em] text-muted-foreground sm:inline">
+            SUPPORT_NETWORK.LOG
+          </span>
         </div>
         <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground mb-14">
-          ONZE <span className="text-primary">PARTNERS</span>
+          {first} <span className="text-primary">{rest.join(" ")}</span>
         </h2>
-        <div className="relative overflow-hidden">
-          <div
-            className={
-              isStatic
-                ? "grid grid-cols-1 sm:grid-cols-2 border border-border divide-y sm:divide-y-0 sm:divide-x divide-border"
-                : "flex w-max animate-marquee gap-14 items-center"
-            }
-          >
-            {loop.map((s, i) => {
-              const inner = s.logo ? (
-                <div className="flex h-28 w-full items-center justify-center px-8 transition-colors hover:bg-primary/5">
+
+        {/* Every partner sits in an identically sized cell so logos never look
+            oversized or tiny next to each other. */}
+        <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4">
+          {sponsors.map((s, i) => {
+            const inner = (
+              <div className="flex h-32 w-full items-center justify-center bg-card px-6 py-6 transition-colors group-hover:bg-primary/5">
+                {s.logo ? (
                   <img
                     src={contentImage(s.logo)}
                     alt={s.name}
-                    className="max-h-full max-w-full object-contain opacity-60 hover:opacity-100 transition-opacity"
+                    loading="lazy"
+                    className="max-h-16 max-w-[80%] object-contain opacity-70 transition-opacity group-hover:opacity-100"
                   />
-                </div>
-              ) : (
-                <div className="flex h-28 w-full items-center justify-center px-8 transition-colors hover:bg-primary/5">
-                  <span className="font-heading italic text-xl sm:text-2xl font-bold tracking-wider text-muted-foreground/70 hover:text-foreground transition-colors whitespace-nowrap text-center">
+                ) : (
+                  <span className="font-heading italic text-lg sm:text-xl font-bold tracking-wider text-muted-foreground/80 transition-colors group-hover:text-foreground text-center leading-tight">
                     {s.name}
                   </span>
-                </div>
-              );
-              return s.url ? (
-                <a
-                  key={`${s.name}-${i}`}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  {inner}
-                </a>
-              ) : (
-                <span key={`${s.name}-${i}`} className="block">
-                  {inner}
-                </span>
-              );
-            })}
-          </div>
-          {!isStatic && (
-            <>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-card to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-card to-transparent" />
-            </>
-          )}
+                )}
+              </div>
+            );
+            return s.url ? (
+              <a
+                key={`${s.name}-${i}`}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`${s.name} — website openen`}
+                className="group block"
+              >
+                {inner}
+              </a>
+            ) : (
+              <span key={`${s.name}-${i}`} className="group block">
+                {inner}
+              </span>
+            );
+          })}
         </div>
       </div>
     </section>
