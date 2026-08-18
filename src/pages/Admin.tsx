@@ -108,6 +108,7 @@ export default function Admin() {
           )}
 
           {tab === "about" && <AboutEditor onStatus={setStatus} />}
+          {tab === "texts" && <TextsEditor onStatus={setStatus} />}
           {tab === "races" && (
             <CollectionEditor
               table="races"
