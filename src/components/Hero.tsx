@@ -94,7 +94,7 @@ export function Hero() {
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="hero-photo pointer-events-none absolute inset-0 z-0 hidden lg:block"
+        className="hero-photo pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[64%] lg:block"
         style={{ backgroundImage: `url(${asset("images/hero.jpg")})` }}
       />
       <div
