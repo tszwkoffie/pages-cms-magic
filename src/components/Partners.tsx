@@ -29,13 +29,13 @@ export function Partners() {
           <div
             className={
               isStatic
-                ? "flex flex-wrap justify-center gap-14 sm:gap-24 items-center"
+                ? "grid grid-cols-1 sm:grid-cols-2 border border-border divide-y sm:divide-y-0 sm:divide-x divide-border"
                 : "flex w-max animate-marquee gap-14 items-center"
             }
           >
             {loop.map((s, i) => {
               const inner = s.logo ? (
-                <div className="flex items-center justify-center h-20 w-40 sm:h-24 sm:w-48">
+                <div className="flex h-28 w-full items-center justify-center px-8 transition-colors hover:bg-primary/5">
                   <img
                     src={contentImage(s.logo)}
                     alt={s.name}
@@ -43,7 +43,7 @@ export function Partners() {
                   />
                 </div>
               ) : (
-                <div className="flex items-center justify-center h-20 w-40 sm:h-24 sm:w-48">
+                <div className="flex h-28 w-full items-center justify-center px-8 transition-colors hover:bg-primary/5">
                   <span className="font-heading italic text-xl sm:text-2xl font-bold tracking-wider text-muted-foreground/70 hover:text-foreground transition-colors whitespace-nowrap text-center">
                     {s.name}
                   </span>
@@ -55,12 +55,12 @@ export function Partners() {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0"
+                  className="block"
                 >
                   {inner}
                 </a>
               ) : (
-                <span key={`${s.name}-${i}`} className="shrink-0">
+                <span key={`${s.name}-${i}`} className="block">
                   {inner}
                 </span>
               );
