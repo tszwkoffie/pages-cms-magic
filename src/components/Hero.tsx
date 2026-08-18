@@ -82,29 +82,48 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Right: HUD-framed kart photo */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5"
-        >
-          <div className="hud-frame scanlines img-zoom group relative aspect-[4/5] overflow-hidden border border-border bg-card p-2">
-            <img
-              src={asset("images/hero.jpg")}
-              alt="Jeavy Reppel in zijn kart met startnummer 236"
-              className="h-full w-full object-cover"
-              style={{ objectPosition: "55% center" }}
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6 z-10 font-tech text-[10px] leading-relaxed tracking-[0.12em] text-foreground/70">
-              V_MAX: 114 KM/H
-              <br />
-              RPM: 13.850
-            </div>
-          </div>
-        </motion.div>
+        {/* Right column keeps layout space for the blended photo on desktop */}
+        <div className="lg:col-span-5 lg:h-[1px]" />
       </div>
+
+      {/* Blended kart photo — desktop: bleeds from the right into the background */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0, scale: 1.04 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
+      >
+        <img
+          src={asset("images/hero.jpg")}
+          alt=""
+          className="photo-blend-right h-full w-full object-cover"
+          style={{ objectPosition: "55% center" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
+      </motion.div>
+
+      {/* Blended kart photo — mobile / tablet */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.4, delay: 0.1 }}
+        className="relative mx-auto mt-10 w-full max-w-[88rem] px-5 lg:hidden"
+      >
+        <img
+          src={asset("images/hero.jpg")}
+          alt="Jeavy Reppel in zijn kart met startnummer 236"
+          className="photo-blend-mobile h-[46vh] w-full object-cover"
+          style={{ objectPosition: "55% center" }}
+        />
+        <span className="absolute bottom-4 left-8 font-tech text-[10px] leading-relaxed tracking-[0.12em] text-foreground/70">
+          V_MAX: 114 KM/H
+          <br />
+          RPM: 13.850
+        </span>
+      </motion.div>
+
 
       <div className="relative mx-auto mt-10 w-full max-w-[88rem] px-5 text-right font-tech text-[10px] tracking-[0.2em] text-muted-foreground/70">
         [ TELEMETRY_STREAM · JR236 ]
