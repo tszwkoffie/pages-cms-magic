@@ -54,10 +54,11 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const load = async () => {
-    const [aboutRes, racesRes, sponsorsRes] = await Promise.all([
+    const [aboutRes, racesRes, sponsorsRes, textsRes] = await Promise.all([
       supabase.from("site_about").select("*").limit(1).maybeSingle(),
       supabase.from("races").select("*").order("race_date", { ascending: true }),
       supabase.from("sponsors").select("*").order("sort_order", { ascending: true }),
+      supabase.from("site_texts").select("key,value"),
     ]);
 
     setData((prev) => ({
