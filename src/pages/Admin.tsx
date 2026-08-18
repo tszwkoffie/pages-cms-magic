@@ -515,6 +515,44 @@ function CollectionEditor({
                       />
                       Ja
                     </label>
+                  ) : f.type === "image" ? (
+                    <div className="space-y-2">
+                      <input
+                        value={String(row[f.key] ?? "")}
+                        onChange={(e) => update(i, f.key, e.target.value)}
+                        placeholder="https://… of upload hieronder"
+                        className={input}
+                      />
+                      <div className="flex items-center gap-3">
+                        <label className="inline-flex cursor-pointer items-center gap-2 border border-border px-3 py-2 font-heading text-[10px] tracking-[0.25em] text-muted-foreground hover:text-foreground">
+                          <ImagePlus size={14} /> LOGO UPLOADEN
+                          <input
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0];
+                              if (!file) return;
+                              onStatus("Uploaden…");
+                              try {
+                                const url = await uploadLogo(file);
+                                update(i, f.key, url);
+                                onStatus("Logo geüpload — vergeet niet op te slaan");
+                              } catch (err) {
+                                onStatus(`Fout: ${(err as Error).message}`);
+                              }
+                            }}
+                          />
+                        </label>
+                        {row[f.key] ? (
+                          <img
+                            src={String(row[f.key])}
+                            alt=""
+                            className="h-10 max-w-[120px] object-contain"
+                          />
+                        ) : null}
+                      </div>
+                    </div>
                   ) : f.type === "textarea" ? (
                     <textarea
                       rows={3}
