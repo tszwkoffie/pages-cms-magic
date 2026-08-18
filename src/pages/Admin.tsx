@@ -5,7 +5,7 @@ import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteData } from "@/lib/site-data";
 
-type Tab = "about" | "races" | "sponsors";
+type Tab = "about" | "texts" | "races" | "sponsors";
 
 type Row = Record<string, string | number | boolean | null>;
 
