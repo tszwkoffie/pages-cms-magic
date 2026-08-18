@@ -13,14 +13,34 @@ export interface SiteData {
   about: About;
   races: Race[];
   sponsors: Sponsor[];
+  texts: Record<string, string>;
   loading: boolean;
   refresh: () => Promise<void>;
 }
+
+export const defaultTexts: Record<string, string> = {
+  hero_badge: "Junior Rotax · Seizoen 2026 / 2027",
+  hero_title_first: "JEAVY",
+  hero_title_last: "REPPEL",
+  hero_number: "#236",
+  hero_tagline:
+    "Snelheid. Toewijding. Vooruitgang. Een nieuwe generatie achter het stuur — elke ronde scherper.",
+  hero_cta_primary: "VOLG MIJN SEIZOEN",
+  hero_cta_secondary: "WORD PARTNER",
+  contact_title: "LATEN WE DE TOEKOMST SAMEN BOUWEN.",
+  contact_body:
+    "Interesse in een partnership met Jeavy Reppel? Neem contact op en word onderdeel van het avontuur.",
+  contact_cta: "NEEM CONTACT OP",
+  contact_email: "info@jeavyreppel.com",
+  contact_instagram: "@jeavy_reppel.karting",
+  partners_title: "ONZE PARTNERS",
+};
 
 const fallback: Omit<SiteData, "loading" | "refresh"> = {
   about: getAboutFallback(),
   races: getRacesFallback(),
   sponsors: getSponsorsFallback(),
+  texts: defaultTexts,
 };
 
 const SiteDataContext = createContext<SiteData>({
