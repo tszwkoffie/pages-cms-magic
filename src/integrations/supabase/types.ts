@@ -151,30 +151,36 @@ export type Database = {
           caption: string
           created_at: string
           id: string
+          ig_id: string | null
           image: string
           link: string
           post_date: string | null
           sort_order: number
+          source: string
           updated_at: string
         }
         Insert: {
           caption?: string
           created_at?: string
           id?: string
+          ig_id?: string | null
           image?: string
           link?: string
           post_date?: string | null
           sort_order?: number
+          source?: string
           updated_at?: string
         }
         Update: {
           caption?: string
           created_at?: string
           id?: string
+          ig_id?: string | null
           image?: string
           link?: string
           post_date?: string | null
           sort_order?: number
+          source?: string
           updated_at?: string
         }
         Relationships: []
