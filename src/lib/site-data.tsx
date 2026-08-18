@@ -96,6 +96,14 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
             order: s.sort_order,
           }))
         : prev.sponsors,
+      texts: textsRes.data
+        ? {
+            ...defaultTexts,
+            ...Object.fromEntries(
+              textsRes.data.filter((t) => t.value !== "").map((t) => [t.key, t.value]),
+            ),
+          }
+        : prev.texts,
     }));
     setLoading(false);
   };
