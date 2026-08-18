@@ -5,7 +5,7 @@ import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteData } from "@/lib/site-data";
 
-type Tab = "about" | "texts" | "races" | "sponsors";
+type Tab = "about" | "texts" | "races" | "sponsors" | "socials";
 
 type Row = Record<string, string | number | boolean | null>;
 
@@ -87,6 +87,7 @@ export default function Admin() {
                 ["texts", "TEKSTEN"],
                 ["races", "SEIZOEN"],
                 ["sponsors", "SPONSORS"],
+                ["socials", "SOCIALS"],
               ] as [Tab, string][]
             ).map(([key, text]) => (
               <button
@@ -158,6 +159,22 @@ export default function Admin() {
                 { key: "name", label: "NAAM" },
                 { key: "logo", label: "LOGO", type: "image", wide: true },
                 { key: "url", label: "WEBSITE (opent in nieuw tabblad)", wide: true },
+                { key: "sort_order", label: "VOLGORDE", type: "number" },
+              ]}
+            />
+          )}
+          {tab === "socials" && (
+            <CollectionEditor
+              table="socials"
+              onStatus={setStatus}
+              orderBy="sort_order"
+              title="Instagram posts"
+              blank={{ image: "", caption: "", link: "", post_date: null, sort_order: 0 }}
+              fields={[
+                { key: "image", label: "FOTO", type: "image", wide: true },
+                { key: "caption", label: "CAPTION", type: "textarea", wide: true },
+                { key: "link", label: "LINK NAAR INSTAGRAM POST", wide: true },
+                { key: "post_date", label: "DATUM", type: "date" },
                 { key: "sort_order", label: "VOLGORDE", type: "number" },
               ]}
             />
@@ -422,7 +439,7 @@ function CollectionEditor({
   title,
   onStatus,
 }: {
-  table: "races" | "sponsors";
+  table: "races" | "sponsors" | "socials";
   fields: Field[];
   blank: Row;
   orderBy: string;
