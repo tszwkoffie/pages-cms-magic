@@ -10,13 +10,14 @@ export function Season() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section id="season" className="relative overflow-hidden">
+    <section id="season" className="dot-grid relative overflow-hidden">
       {/* Subtle background gradient wash that overlaps with previous section */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background pointer-events-none" />
       <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:py-36">
-        <div className="flex items-center gap-4 mb-14">
-          <span className="font-heading text-xs tracking-[0.4em] text-accent">02 / KALENDER</span>
-          <span className="flex-1 h-px bg-border" />
+        <div className="mb-14 flex items-center gap-4 border-x border-primary/25 px-4 py-2">
+          <span className="font-tech text-[10px] tracking-[0.2em] text-accent">02 / KALENDER</span>
+          <span className="h-px flex-1 bg-border" />
+          <span className="hidden font-tech text-[10px] tracking-[0.2em] text-muted-foreground sm:inline">RACE_SCHEDULE.LOG</span>
         </div>
 
         <div className="flex flex-wrap items-end justify-between gap-4 mb-14">
@@ -27,7 +28,7 @@ export function Season() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
-            className="group inline-flex items-center gap-2 font-heading text-xs tracking-[0.3em] text-muted-foreground hover:text-foreground transition"
+            className="group inline-flex items-center gap-2 border border-border px-4 py-2.5 font-tech text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition hover:border-accent hover:text-accent"
           >
             {open ? "VERBERG VOLLEDIGE KALENDER" : "BEKIJK VOLLEDIGE KALENDER"}
             <ChevronDown
@@ -46,25 +47,23 @@ export function Season() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6 }}
-              className={`relative bg-card p-6 border-t-2 transition-colors ${
+              className={`relative border border-border bg-card p-6 transition-colors hover:bg-primary/5 border-t-2 ${
                 r.upcoming ? "border-t-primary" : "border-t-accent"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-heading text-[10px] tracking-[0.3em] text-muted-foreground">
-                  {r.round}
-                </span>
+                <span className="tech-label">[ {r.round} ]</span>
                 <Flag country={r.country} />
               </div>
               <h3 className="mt-6 font-heading italic text-2xl font-bold text-foreground leading-tight">
                 {r.track}
               </h3>
-              <p className="mt-1 font-heading text-[11px] tracking-[0.25em] text-muted-foreground">
+              <p className="mt-2 font-tech text-[10px] tracking-[0.15em] text-muted-foreground">
                 {formatRaceDate(r.date)}
               </p>
               <div className="mt-8 pt-4 border-t border-border">
                 {r.upcoming ? (
-                  <span className="font-heading text-sm tracking-[0.25em] text-primary">BINNENKORT</span>
+                  <span className="inline-flex items-center gap-2 font-tech text-[10px] uppercase tracking-[0.2em] text-primary"><span className="live-dot" />Binnenkort</span>
                 ) : (
                   <span className="font-heading italic text-3xl font-bold text-primary">{r.result}</span>
                 )}
@@ -101,9 +100,7 @@ export function Season() {
                       <div className="flex items-center gap-4 pl-3">
                         <Flag country={r.country} />
                         <div>
-                          <span className="font-heading text-[10px] tracking-[0.3em] text-muted-foreground">
-                            {r.round}
-                          </span>
+                          <span className="tech-label">[ {r.round} ]</span>
                           <h4 className="font-heading italic text-xl font-bold text-foreground leading-tight">
                             {r.track}
                           </h4>
@@ -131,7 +128,7 @@ export function Season() {
 
                       <div className="sm:text-right">
                         {r.upcoming ? (
-                          <span className="font-heading text-sm tracking-[0.25em] text-primary">BINNENKORT</span>
+                          <span className="inline-flex items-center gap-2 font-tech text-[10px] uppercase tracking-[0.2em] text-primary"><span className="live-dot" />Binnenkort</span>
                         ) : (
                           <span className="font-heading italic text-2xl font-bold text-primary">{r.result}</span>
                         )}

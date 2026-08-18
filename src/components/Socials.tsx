@@ -11,9 +11,10 @@ export function Socials() {
         SOCIALS
       </span>
       <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:py-32">
-        <div className="flex items-center gap-4 mb-14">
-          <span className="font-heading text-xs tracking-[0.4em] text-accent">04 / SOCIALS</span>
-          <span className="flex-1 h-px bg-border" />
+        <div className="mb-14 flex items-center gap-4 border-x border-primary/25 px-4 py-2">
+          <span className="font-tech text-[10px] tracking-[0.2em] text-accent">04 / SOCIALS</span>
+          <span className="h-px flex-1 bg-border" />
+          <span className="hidden font-tech text-[10px] tracking-[0.2em] text-muted-foreground sm:inline">FEED_STREAM.LIVE</span>
         </div>
         <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
           <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground">
@@ -24,7 +25,7 @@ export function Socials() {
               href="https://instagram.com/jeavy_reppel.karting"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-heading text-xs font-semibold tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors duration-300 inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 border border-border px-3 py-2 font-tech text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition hover:border-accent hover:text-foreground"
             >
               <Instagram size={16} className="text-accent" />
               @JEAVY_REPPEL.KARTING
@@ -33,7 +34,7 @@ export function Socials() {
               href="https://www.linkedin.com/in/jeavy-reppel"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-heading text-xs font-semibold tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors duration-300 inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 border border-border px-3 py-2 font-tech text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition hover:border-accent hover:text-foreground"
             >
               <Linkedin size={16} className="text-accent" />
               LINKEDIN

@@ -17,9 +17,10 @@ export function Partners() {
         PARTNERS
       </span>
       <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:py-32">
-        <div className="flex items-center gap-4 mb-14">
-          <span className="font-heading text-xs tracking-[0.4em] text-accent">03 / PARTNERS</span>
-          <span className="flex-1 h-px bg-border" />
+        <div className="mb-14 flex items-center gap-4 border-x border-primary/25 px-4 py-2">
+          <span className="font-tech text-[10px] tracking-[0.2em] text-accent">03 / PARTNERS</span>
+          <span className="h-px flex-1 bg-border" />
+          <span className="hidden font-tech text-[10px] tracking-[0.2em] text-muted-foreground sm:inline">SUPPORT_NETWORK.LOG</span>
         </div>
         <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground mb-14">
           ONZE <span className="text-primary">PARTNERS</span>
