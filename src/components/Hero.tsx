@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { asset } from "@/lib/asset";
+import { useTexts } from "@/lib/site-data";
 
 export function Hero() {
+  const t = useTexts();
   return (
     <section
       id="home"
