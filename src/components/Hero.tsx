@@ -17,7 +17,7 @@ export function Hero() {
       </span>
 
       {/* Top data bar */}
-      <div className="relative mx-auto max-w-[88rem] px-5">
+      <div className="relative mx-auto w-full max-w-[88rem] px-5">
         <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-x border-primary/30 px-4 py-2 font-tech text-[10px] tracking-[0.18em] text-muted-foreground">
           <div className="flex gap-4">
             <span>LAT: 51.4416° N</span>
@@ -30,7 +30,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative mx-auto grid max-w-[88rem] items-center gap-10 px-5 pt-14 lg:grid-cols-12 lg:gap-12 lg:pt-20">
+      <div className="relative mx-auto grid w-full max-w-[88rem] items-center gap-10 px-5 pt-14 lg:grid-cols-12 lg:gap-12 lg:pt-20">
         {/* Left: identity block */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -106,7 +106,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <div className="relative mx-auto mt-10 max-w-[88rem] px-5 text-right font-tech text-[10px] tracking-[0.2em] text-muted-foreground/70">
+      <div className="relative mx-auto mt-10 w-full max-w-[88rem] px-5 text-right font-tech text-[10px] tracking-[0.2em] text-muted-foreground/70">
         [ TELEMETRY_STREAM · JR236 ]
       </div>
     </section>
