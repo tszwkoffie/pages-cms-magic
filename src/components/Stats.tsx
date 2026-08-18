@@ -1,33 +1,48 @@
 import { motion } from "framer-motion";
-import { Flag as FlagIcon, Trophy, Timer, Target } from "lucide-react";
 
 const stats = [
-  { Icon: FlagIcon, label: "RACES", value: "14", sub: "2024 — 2026" },
-  { Icon: Trophy, label: "PODIUMS", value: "6", sub: "TOP 3 FINISHES" },
-  { Icon: Timer, label: "SNELSTE RONDE", value: "48.781", sub: "GENK 2026" },
-  { Icon: Target, label: "DOEL 2026", value: "KAMPIOEN", sub: "JUNIOR ROTAX" },
+  { label: "RACES", value: "14", sub: "2024 — 2026", meter: 70, tone: "primary" as const },
+  { label: "PODIUMS", value: "6", sub: "TOP 3 FINISHES", meter: 43, tone: "accent" as const },
+  { label: "SNELSTE RONDE", value: "48.781", sub: "GENK 2026", meter: 88, tone: "primary" as const },
+  { label: "DOEL 2026", value: "KAMPIOEN", sub: "JUNIOR ROTAX", meter: 100, tone: "accent" as const },
 ];
 
 export function Stats() {
   return (
-    <section className="relative z-20 -mt-20 sm:-mt-24 lg:-mt-32 mx-4 sm:mx-6 lg:mx-10 xl:mx-16">
-      <div className="bg-card/90 backdrop-blur-sm border border-border/60 shadow-2xl shadow-black/40">
-        <div className="mx-auto max-w-[88rem] grid grid-cols-2 md:grid-cols-4">
+    <section className="relative z-20 mx-4 -mt-10 sm:mx-6 lg:mx-10 xl:mx-16">
+      <div className="border border-border/60 bg-card/90 backdrop-blur-sm">
+        <div className="flex items-center justify-between border-b border-border/60 px-5 py-2 font-tech text-[10px] tracking-[0.2em] text-muted-foreground">
+          <span className="text-accent">// SEIZOENSTELEMETRIE</span>
+          <span className="hidden sm:inline">LOG_0236 · LIVE</span>
+        </div>
+        <div className="mx-auto grid max-w-[88rem] grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="relative flex items-center gap-4 px-6 py-10 md:py-12 border-border [&:not(:nth-child(2n))]:border-r md:border-r md:last:border-r-0 [&:nth-child(-n+2)]:border-b md:[&:nth-child(-n+2)]:border-b-0"
+              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative flex flex-col px-6 py-8 transition-colors hover:bg-primary/5 border-border [&:not(:nth-child(2n))]:border-r md:border-r md:last:border-r-0 [&:nth-child(-n+2)]:border-b md:[&:nth-child(-n+2)]:border-b-0"
             >
-              <span className="absolute top-0 left-0 h-[2px] w-8 bg-accent" />
-              <s.Icon className="text-primary shrink-0" size={32} strokeWidth={1.5} />
-              <div className="min-w-0">
-                <p className="font-heading text-[10px] tracking-[0.3em] text-muted-foreground">{s.label}</p>
-                <p className="font-heading italic text-2xl sm:text-3xl font-bold text-foreground truncate">{s.value}</p>
-                <p className="font-heading text-[10px] tracking-[0.25em] text-muted-foreground">{s.sub}</p>
+              <span className={`tech-label mb-3 ${s.tone === "accent" ? "text-accent" : ""}`}>
+                [ {s.label} ]
+              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="font-heading italic text-3xl font-bold text-foreground sm:text-4xl">
+                  {s.value}
+                </span>
+                <span className="font-tech text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                  {s.sub}
+                </span>
+              </div>
+              <div className="data-meter mt-5">
+                <span
+                  style={{
+                    width: `${s.meter}%`,
+                    background: s.tone === "accent" ? "var(--accent)" : "var(--primary)",
+                  }}
+                />
               </div>
             </motion.div>
           ))}
