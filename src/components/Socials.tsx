@@ -1,10 +1,6 @@
 import { Instagram, Linkedin } from "lucide-react";
-import { contentImage, formatRaceDate } from "@/lib/content";
-import { useSocials } from "@/lib/site-data";
 
 export function Socials() {
-  const posts = useSocials();
-
   return (
     <section id="socials" className="relative overflow-hidden bg-card">
       {/* Oversized social watermark bleeding into adjacent sections */}
@@ -46,47 +42,13 @@ export function Socials() {
           </div>
         </div>
 
-        {posts.length ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post, i) => (
-              <a
-                key={`${post.image}-${i}`}
-                href={post.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block overflow-hidden border border-border bg-background"
-              >
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={contentImage(post.image)}
-                    alt={post.caption || "Instagram post van Jeavy Reppel"}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/85 to-transparent p-4 pt-10">
-                  <div className="mb-2 flex items-center gap-2 font-tech text-[10px] uppercase tracking-[0.2em] text-accent">
-                    <Instagram size={12} />
-                    {post.date ? formatRaceDate(post.date) : "INSTAGRAM"}
-                  </div>
-                  {post.caption && (
-                    <p className="line-clamp-3 text-sm text-muted-foreground">{post.caption}</p>
-                  )}
-                </div>
-              </a>
-            ))}
-          </div>
-        ) : (
-          <a
-            href="https://instagram.com/jeavy_reppel.karting"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block border border-dashed border-border p-10 text-center font-tech text-[11px] uppercase tracking-[0.2em] text-muted-foreground transition hover:border-accent hover:text-foreground"
-          >
-            Bekijk de laatste posts op Instagram
-          </a>
-        )}
+        {/* Elfsight Instagram Feed | Untitled Instagram Feed */}
+        <div
+          className="elfsight-app-a12fc2e2-f479-4a27-898c-88921cf435d4"
+          data-elfsight-app-lazy
+        />
       </div>
     </section>
   );
 }
+
