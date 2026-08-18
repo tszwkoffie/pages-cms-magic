@@ -28,8 +28,8 @@ export function Stats() {
               <span className={`tech-label mb-3 ${s.tone === "accent" ? "text-accent" : ""}`}>
                 [ {s.label} ]
               </span>
-              <div className="flex items-baseline gap-2">
-                <span className="font-heading italic text-3xl font-bold text-foreground sm:text-4xl">
+              <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span className={`font-heading italic font-bold text-foreground ${s.value.length > 6 ? "text-xl sm:text-2xl" : "text-3xl sm:text-4xl"}`}>
                   {s.value}
                 </span>
                 <span className="font-tech text-[10px] uppercase tracking-[0.15em] text-muted-foreground">

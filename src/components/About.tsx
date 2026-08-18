@@ -43,7 +43,7 @@ export function About() {
                 className="h-full w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
-              <span className="absolute left-6 top-6 z-10 font-tech text-[10px] tracking-[0.2em] text-accent">
+              <span className="absolute right-6 top-6 z-10 font-tech text-[10px] tracking-[0.2em] text-accent">
                 ID · #236
               </span>
               <span className="absolute bottom-6 left-6 z-10 font-tech text-[10px] leading-relaxed tracking-[0.12em] text-foreground/70">
@@ -98,7 +98,7 @@ export function About() {
                   key={d.label}
                   className="relative border-border px-4 py-5 transition-colors hover:bg-primary/5 [&:not(:nth-child(2n))]:border-r sm:border-r sm:last:border-r-0 [&:nth-child(-n+2)]:border-b sm:[&:nth-child(-n+2)]:border-b-0"
                 >
-                  <span className="tech-label">[ {d.label} ]</span>
+                  <span className="tech-label block whitespace-nowrap text-[9px] tracking-[0.12em]">[ {d.label} ]</span>
                   <div className="mt-2 flex items-center gap-2">
                     {d.flag && <Flag country={d.flag} />}
                     <p className="font-heading italic text-lg font-bold text-foreground">{d.value}</p>
