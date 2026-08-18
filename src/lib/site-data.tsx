@@ -13,14 +13,34 @@ export interface SiteData {
   about: About;
   races: Race[];
   sponsors: Sponsor[];
+  texts: Record<string, string>;
   loading: boolean;
   refresh: () => Promise<void>;
 }
+
+export const defaultTexts: Record<string, string> = {
+  hero_badge: "Junior Rotax · Seizoen 2026 / 2027",
+  hero_title_first: "JEAVY",
+  hero_title_last: "REPPEL",
+  hero_number: "#236",
+  hero_tagline:
+    "Snelheid. Toewijding. Vooruitgang. Een nieuwe generatie achter het stuur — elke ronde scherper.",
+  hero_cta_primary: "VOLG MIJN SEIZOEN",
+  hero_cta_secondary: "WORD PARTNER",
+  contact_title: "LATEN WE DE TOEKOMST SAMEN BOUWEN.",
+  contact_body:
+    "Interesse in een partnership met Jeavy Reppel? Neem contact op en word onderdeel van het avontuur.",
+  contact_cta: "NEEM CONTACT OP",
+  contact_email: "info@jeavyreppel.com",
+  contact_instagram: "@jeavy_reppel.karting",
+  partners_title: "ONZE PARTNERS",
+};
 
 const fallback: Omit<SiteData, "loading" | "refresh"> = {
   about: getAboutFallback(),
   races: getRacesFallback(),
   sponsors: getSponsorsFallback(),
+  texts: defaultTexts,
 };
 
 const SiteDataContext = createContext<SiteData>({
@@ -34,10 +54,11 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const load = async () => {
-    const [aboutRes, racesRes, sponsorsRes] = await Promise.all([
+    const [aboutRes, racesRes, sponsorsRes, textsRes] = await Promise.all([
       supabase.from("site_about").select("*").limit(1).maybeSingle(),
       supabase.from("races").select("*").order("race_date", { ascending: true }),
       supabase.from("sponsors").select("*").order("sort_order", { ascending: true }),
+      supabase.from("site_texts").select("key,value"),
     ]);
 
     setData((prev) => ({
@@ -75,6 +96,14 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
             order: s.sort_order,
           }))
         : prev.sponsors,
+      texts: textsRes.data
+        ? {
+            ...defaultTexts,
+            ...Object.fromEntries(
+              textsRes.data.filter((t) => t.value !== "").map((t) => [t.key, t.value]),
+            ),
+          }
+        : prev.texts,
     }));
     setLoading(false);
   };
@@ -94,3 +123,7 @@ export const useSiteData = () => useContext(SiteDataContext);
 export const useAbout = () => useSiteData().about;
 export const useRaces = () => useSiteData().races;
 export const useSponsors = () => useSiteData().sponsors;
+export function useTexts() {
+  const { texts } = useSiteData();
+  return (key: string, fallbackValue = "") => texts[key] ?? defaultTexts[key] ?? fallbackValue;
+}

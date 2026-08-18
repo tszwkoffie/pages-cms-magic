@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Instagram, Youtube, Mail, ArrowRight } from "lucide-react";
 import { asset } from "@/lib/asset";
+import { useTexts } from "@/lib/site-data";
 
 export function ContactCta() {
+  const t = useTexts();
+  const email = t("contact_email");
   return (
     <section id="contact" className="relative overflow-hidden">
       <img
@@ -29,25 +32,20 @@ export function ContactCta() {
           className="max-w-2xl"
         >
           <h2 className="display-italic text-[3rem] sm:text-[5.5rem] text-foreground">
-            LATEN WE DE
-            <br />
-            TOEKOMST{" "}
-            <span className="text-primary">SAMEN BOUWEN.</span>
+            {t("contact_title")}
           </h2>
-          <p className="mt-6 text-muted-foreground leading-relaxed max-w-lg">
-            Interesse in een partnership met Jeavy Reppel? Neem contact op en word onderdeel van het avontuur.
-          </p>
+          <p className="mt-6 text-muted-foreground leading-relaxed max-w-lg">{t("contact_body")}</p>
           <a
-            href="mailto:info@jeavyreppel.com"
+            href={`mailto:${email}`}
             className="group mt-8 inline-flex items-center gap-2 bg-primary px-7 py-3.5 font-heading font-semibold tracking-[0.25em] text-primary-foreground transition hover:brightness-110"
           >
-            NEEM CONTACT OP
+            {t("contact_cta")}
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <ul className="mt-10 space-y-3">
             <li className="flex items-center gap-3 font-tech text-xs tracking-[0.1em] text-muted-foreground">
               <Instagram size={18} className="text-accent" />
-              <span>@jeavy_reppel.karting</span>
+              <span>{t("contact_instagram")}</span>
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <Youtube size={18} className="text-accent" />
@@ -55,7 +53,7 @@ export function ContactCta() {
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <Mail size={18} className="text-accent" />
-              <span>info@jeavyreppel.com</span>
+              <span>{email}</span>
             </li>
           </ul>
         </motion.div>

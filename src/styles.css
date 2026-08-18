@@ -319,7 +319,52 @@ body::after {
   .data-meter > span { animation: none; }
 }
 
-/* Hero photo blended into the background instead of a framed rectangle */
+/* Hero photo: full-bleed background layer that dissolves into the page */
+.hero-photo {
+  background-size: cover;
+  background-position: 58% center;
+  background-repeat: no-repeat;
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.15) 18%,
+      rgba(0, 0, 0, 0.6) 38%,
+      #000 62%
+    ),
+    linear-gradient(to bottom, transparent 0%, #000 16%, #000 68%, transparent 100%);
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.15) 18%,
+      rgba(0, 0, 0, 0.6) 38%,
+      #000 62%
+    ),
+    linear-gradient(to bottom, transparent 0%, #000 16%, #000 68%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.hero-photo-mobile {
+  background-size: cover;
+  background-position: 60% center;
+  background-repeat: no-repeat;
+  -webkit-mask-image: radial-gradient(
+    115% 120% at 55% 40%,
+    #000 30%,
+    rgba(0, 0, 0, 0.55) 62%,
+    transparent 88%
+  );
+  mask-image: radial-gradient(
+    115% 120% at 55% 40%,
+    #000 30%,
+    rgba(0, 0, 0, 0.55) 62%,
+    transparent 88%
+  );
+}
+
+/* Legacy blend helpers (kept for reference) */
 .photo-blend-right {
   -webkit-mask-image:
     linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 22%, #000 55%),

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, LogOut, Plus, Save, Trash2 } from "lucide-react";
+import { ArrowLeft, ImagePlus, LogOut, Plus, Save, Trash2 } from "lucide-react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteData } from "@/lib/site-data";
 
-type Tab = "about" | "races" | "sponsors";
+type Tab = "about" | "texts" | "races" | "sponsors";
 
 type Row = Record<string, string | number | boolean | null>;
 
@@ -84,6 +84,7 @@ export default function Admin() {
             {(
               [
                 ["about", "OVER MIJ"],
+                ["texts", "TEKSTEN"],
                 ["races", "SEIZOEN"],
                 ["sponsors", "SPONSORS"],
               ] as [Tab, string][]
@@ -107,6 +108,7 @@ export default function Admin() {
           )}
 
           {tab === "about" && <AboutEditor onStatus={setStatus} />}
+          {tab === "texts" && <TextsEditor onStatus={setStatus} />}
           {tab === "races" && (
             <CollectionEditor
               table="races"
@@ -154,8 +156,8 @@ export default function Admin() {
               blank={{ name: "", logo: "", url: "", sort_order: 0 }}
               fields={[
                 { key: "name", label: "NAAM" },
-                { key: "logo", label: "LOGO URL", wide: true },
-                { key: "url", label: "WEBSITE", wide: true },
+                { key: "logo", label: "LOGO", type: "image", wide: true },
+                { key: "url", label: "WEBSITE (opent in nieuw tabblad)", wide: true },
                 { key: "sort_order", label: "VOLGORDE", type: "number" },
               ]}
             />
@@ -317,9 +319,99 @@ function AboutEditor({ onStatus }: { onStatus: (s: string) => void }) {
 interface Field {
   key: string;
   label: string;
-  type?: "text" | "date" | "number" | "boolean" | "textarea";
+  type?: "text" | "date" | "number" | "boolean" | "textarea" | "image";
   options?: [string, string][];
   wide?: boolean;
+}
+
+/** Uploads a logo and returns a long-lived signed URL we can store in the row. */
+async function uploadLogo(file: File): Promise<string> {
+  const ext = file.name.split(".").pop()?.toLowerCase() || "png";
+  const path = `${crypto.randomUUID()}.${ext}`;
+  const { error } = await supabase.storage.from("partner-logos").upload(path, file, {
+    cacheControl: "31536000",
+    upsert: false,
+  });
+  if (error) throw error;
+  const { data, error: signErr } = await supabase.storage
+    .from("partner-logos")
+    .createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
+  if (signErr || !data) throw signErr ?? new Error("Kon geen link maken");
+  return data.signedUrl;
+}
+
+function TextsEditor({ onStatus }: { onStatus: (s: string) => void }) {
+  const { refresh } = useSiteData();
+  const [rows, setRows] = useState<Row[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("site_texts")
+      .select("*")
+      .order("group_name", { ascending: true })
+      .order("sort_order", { ascending: true })
+      .then(({ data }) => setRows((data as Row[]) ?? []));
+  }, []);
+
+  const save = async () => {
+    const results = await Promise.all(
+      rows.map((r) =>
+        supabase
+          .from("site_texts")
+          .update({ value: String(r.value ?? "") })
+          .eq("id", r.id as string),
+      ),
+    );
+    const failed = results.find((r) => r.error);
+    onStatus(failed?.error ? `Fout: ${failed.error.message}` : "Opgeslagen ✓");
+    if (!failed?.error) await refresh();
+  };
+
+  if (!rows.length) return <p className="text-sm text-muted-foreground">Laden…</p>;
+
+  const groups = [...new Set(rows.map((r) => String(r.group_name)))];
+
+  return (
+    <div className="space-y-6">
+      {groups.map((g) => (
+        <div key={g} className="bg-card border border-border p-6">
+          <h3 className="font-heading text-[11px] tracking-[0.3em] text-accent mb-5">
+            {g.toUpperCase()}
+          </h3>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {rows
+              .filter((r) => r.group_name === g)
+              .map((r) => (
+                <div key={String(r.id)} className={r.multiline ? "sm:col-span-2" : ""}>
+                  <span className={label}>{String(r.label || r.key)}</span>
+                  {r.multiline ? (
+                    <textarea
+                      rows={3}
+                      value={String(r.value ?? "")}
+                      onChange={(e) =>
+                        setRows(rows.map((x) => (x.id === r.id ? { ...x, value: e.target.value } : x)))
+                      }
+                      className={input}
+                    />
+                  ) : (
+                    <input
+                      value={String(r.value ?? "")}
+                      onChange={(e) =>
+                        setRows(rows.map((x) => (x.id === r.id ? { ...x, value: e.target.value } : x)))
+                      }
+                      className={input}
+                    />
+                  )}
+                </div>
+              ))}
+          </div>
+        </div>
+      ))}
+      <button onClick={save} className={`${btn} bg-primary text-primary-foreground hover:brightness-110`}>
+        <Save size={14} /> ALLE TEKSTEN OPSLAAN
+      </button>
+    </div>
+  );
 }
 
 function CollectionEditor({
@@ -425,6 +517,44 @@ function CollectionEditor({
                       />
                       Ja
                     </label>
+                  ) : f.type === "image" ? (
+                    <div className="space-y-2">
+                      <input
+                        value={String(row[f.key] ?? "")}
+                        onChange={(e) => update(i, f.key, e.target.value)}
+                        placeholder="https://… of upload hieronder"
+                        className={input}
+                      />
+                      <div className="flex items-center gap-3">
+                        <label className="inline-flex cursor-pointer items-center gap-2 border border-border px-3 py-2 font-heading text-[10px] tracking-[0.25em] text-muted-foreground hover:text-foreground">
+                          <ImagePlus size={14} /> LOGO UPLOADEN
+                          <input
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0];
+                              if (!file) return;
+                              onStatus("Uploaden…");
+                              try {
+                                const url = await uploadLogo(file);
+                                update(i, f.key, url);
+                                onStatus("Logo geüpload — vergeet niet op te slaan");
+                              } catch (err) {
+                                onStatus(`Fout: ${(err as Error).message}`);
+                              }
+                            }}
+                          />
+                        </label>
+                        {row[f.key] ? (
+                          <img
+                            src={String(row[f.key])}
+                            alt=""
+                            className="h-10 max-w-[120px] object-contain"
+                          />
+                        ) : null}
+                      </div>
+                    </div>
                   ) : f.type === "textarea" ? (
                     <textarea
                       rows={3}
