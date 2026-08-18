@@ -1,6 +1,10 @@
 import { Instagram, Linkedin } from "lucide-react";
+import { contentImage, formatRaceDate } from "@/lib/content";
+import { useSocials } from "@/lib/site-data";
 
 export function Socials() {
+  const posts = useSocials();
+
   return (
     <section id="socials" className="relative overflow-hidden bg-card">
       {/* Oversized social watermark bleeding into adjacent sections */}
