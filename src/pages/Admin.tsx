@@ -156,8 +156,8 @@ export default function Admin() {
               blank={{ name: "", logo: "", url: "", sort_order: 0 }}
               fields={[
                 { key: "name", label: "NAAM" },
-                { key: "logo", label: "LOGO URL", wide: true },
-                { key: "url", label: "WEBSITE", wide: true },
+                { key: "logo", label: "LOGO", type: "image", wide: true },
+                { key: "url", label: "WEBSITE (opent in nieuw tabblad)", wide: true },
                 { key: "sort_order", label: "VOLGORDE", type: "number" },
               ]}
             />
