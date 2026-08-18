@@ -29,6 +29,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: "Inter", system-ui, sans-serif;
   --font-heading: "Oswald", Impact, sans-serif;
+  --font-tech: "JetBrains Mono", ui-monospace, monospace;
   --radius: var(--radius);
 }
 
