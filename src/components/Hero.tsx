@@ -99,7 +99,7 @@ export function Hero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 hidden bg-gradient-to-r from-background via-background/70 to-transparent lg:block"
+        className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[70%] bg-gradient-to-r from-background via-background/85 to-transparent lg:block"
       />
       <div
         aria-hidden
