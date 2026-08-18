@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, LogOut, Plus, Save, Trash2 } from "lucide-react";
+import { ArrowLeft, ImagePlus, LogOut, Plus, Save, Trash2 } from "lucide-react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteData } from "@/lib/site-data";
