@@ -84,6 +84,7 @@ export default function Admin() {
             {(
               [
                 ["about", "OVER MIJ"],
+                ["texts", "TEKSTEN"],
                 ["races", "SEIZOEN"],
                 ["sponsors", "SPONSORS"],
               ] as [Tab, string][]
