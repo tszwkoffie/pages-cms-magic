@@ -6,86 +6,108 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-end overflow-hidden bg-background"
+      className="dot-grid relative flex min-h-screen flex-col justify-center overflow-hidden bg-background pt-28 pb-16"
     >
-      {/* Full-bleed cinematic kart image */}
-      <img
-        src={asset("images/hero.jpg")}
-        alt="Jeavy Reppel racing kart number 236"
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "55% center" }}
-      />
-      {/* Cinematic gradient overlays — stronger bottom wash so next section flows in */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/40" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-transparent to-background/50" />
-
-      {/* Side ticker — Ferrari-style vertical label */}
-      <div className="hidden lg:flex absolute left-5 top-1/2 -translate-y-1/2 z-10 items-center gap-3 rotate-[-90deg] origin-left">
-        <span className="inline-block h-px w-10 bg-accent" />
-        <span className="font-heading text-[11px] tracking-[0.45em] text-muted-foreground">
-          SEIZOEN · 2026 / 2027
-        </span>
-      </div>
-
-      {/* Big background number — CS55-style */}
+      {/* Oversized telemetry number */}
       <span
         aria-hidden
-        className="pointer-events-none absolute top-24 right-4 sm:right-10 font-heading italic font-bold leading-none text-outline select-none text-[18rem] sm:text-[26rem] lg:text-[34rem]"
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none display-italic leading-none text-foreground/[0.035] text-[52vw]"
       >
         236
       </span>
 
-      {/* Editorial content block, bottom-left */}
-      <div className="relative z-10 mx-auto max-w-[88rem] w-full px-5 pb-28 pt-32 lg:pb-40">
+      {/* Top data bar */}
+      <div className="relative mx-auto w-full max-w-[88rem] px-5">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-x border-primary/30 px-4 py-2 font-tech text-[10px] tracking-[0.18em] text-muted-foreground">
+          <div className="flex gap-4">
+            <span>LAT: 51.4416° N</span>
+            <span className="hidden sm:inline">LON: 5.4697° E</span>
+          </div>
+          <div className="flex gap-4">
+            <span className="text-accent">STATUS: RACE READY</span>
+            <span className="hidden sm:inline">CIRCUIT: GENK</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto grid w-full max-w-[88rem] items-center gap-10 px-5 pt-14 lg:grid-cols-12 lg:gap-12 lg:pt-20">
+        {/* Left: identity block */}
         <motion.div
-          initial={{ opacity: 0, y: 48 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-5xl"
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="inline-block h-px w-12 bg-accent" />
-            <p className="font-heading text-xs sm:text-sm font-semibold tracking-[0.4em] text-accent">
-              JUNIOR ROTAX · #236
-            </p>
+          <div className="mb-7 inline-flex items-center gap-3 border border-primary bg-primary/10 px-3 py-1.5">
+            <span className="live-dot" />
+            <span className="font-tech text-[11px] font-bold uppercase tracking-[0.12em] text-primary">
+              Junior Rotax · Seizoen 2026 / 2027
+            </span>
           </div>
 
-          <h1 className="display-italic text-foreground text-[18vw] sm:text-[14vw] lg:text-[11rem] xl:text-[14rem]">
+          <h1 className="display-italic text-foreground text-[17vw] sm:text-[12vw] lg:text-[8.5rem] xl:text-[10rem]">
             JEAVY
             <br />
             <span className="text-primary">REPPEL</span>
           </h1>
 
-          <div className="mt-8 grid sm:grid-cols-[1fr_auto] gap-6 items-end">
-            <p className="font-heading text-lg sm:text-xl tracking-wide text-muted-foreground max-w-xl">
-              Snelheid. Toewijding. Vooruitgang.<br />
-              <span className="text-foreground/80">
-                Een nieuwe generatie achter het stuur.
+          <div className="mt-10 flex flex-wrap items-end gap-8">
+            <div className="flex flex-col">
+              <span className="tech-label mb-1 underline decoration-accent decoration-2 underline-offset-4">
+                Pilot ID
               </span>
+              <span className="font-heading italic text-4xl font-bold text-foreground">#236</span>
+            </div>
+            <p className="max-w-xs border-l-2 border-primary pl-4 text-sm leading-relaxed text-muted-foreground">
+              Snelheid. Toewijding. Vooruitgang.
+              <br />
+              Een nieuwe generatie achter het stuur — elke ronde scherper.
             </p>
+          </div>
 
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#season"
-                className="group inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-[0.2em] px-7 py-3.5 hover:brightness-110 transition"
-              >
-                VOLG MIJN SEIZOEN
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center border border-foreground/30 text-foreground font-heading font-semibold tracking-[0.2em] px-7 py-3.5 hover:bg-foreground hover:text-background transition"
-              >
-                WORD PARTNER
-              </a>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a
+              href="#season"
+              className="group inline-flex items-center gap-2 bg-primary px-7 py-3.5 font-heading font-semibold tracking-[0.2em] text-primary-foreground transition hover:brightness-110"
+            >
+              VOLG MIJN SEIZOEN
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center border border-foreground/30 px-7 py-3.5 font-heading font-semibold tracking-[0.2em] text-foreground transition hover:bg-foreground hover:text-background"
+            >
+              WORD PARTNER
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Right: HUD-framed kart photo */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5"
+        >
+          <div className="hud-frame scanlines img-zoom group relative aspect-[4/5] overflow-hidden border border-border bg-card p-2">
+            <img
+              src={asset("images/hero.jpg")}
+              alt="Jeavy Reppel in zijn kart met startnummer 236"
+              className="h-full w-full object-cover"
+              style={{ objectPosition: "55% center" }}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 z-10 font-tech text-[10px] leading-relaxed tracking-[0.12em] text-foreground/70">
+              V_MAX: 114 KM/H
+              <br />
+              RPM: 13.850
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Scroll hint */}
-      <div className="hidden lg:block absolute bottom-10 right-8 z-10 scroll-hint text-[10px] tracking-[0.4em] text-muted-foreground font-heading">
-        SCROLL
+      <div className="relative mx-auto mt-10 w-full max-w-[88rem] px-5 text-right font-tech text-[10px] tracking-[0.2em] text-muted-foreground/70">
+        [ TELEMETRY_STREAM · JR236 ]
       </div>
     </section>
   );

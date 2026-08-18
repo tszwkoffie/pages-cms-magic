@@ -29,6 +29,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: "Inter", system-ui, sans-serif;
   --font-heading: "Oswald", Impact, sans-serif;
+  --font-tech: "JetBrains Mono", ui-monospace, monospace;
   --radius: var(--radius);
 }
 
@@ -203,4 +204,112 @@ body::after {
   margin: 6px auto 0;
   background: var(--foreground);
   animation: scrollHint 1.6s ease-in-out infinite;
+}
+
+/* ===== Telemetry Data Stream design language ===== */
+
+.font-tech {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Micro label used above every data value */
+.tech-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Faint technical dot grid, sits behind content */
+.dot-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.09;
+  background-image: radial-gradient(var(--foreground) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Broadcast scanline sheen over photography */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.16) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(224, 16, 32, 0.04),
+      rgba(255, 255, 255, 0.01),
+      rgba(224, 16, 32, 0.04)
+    );
+  background-size: 100% 4px, 3px 100%;
+}
+
+/* HUD corner brackets around a framed panel */
+.hud-frame::before,
+.hud-frame::after {
+  content: "";
+  position: absolute;
+  width: 1.75rem;
+  height: 1.75rem;
+  z-index: 20;
+  pointer-events: none;
+  border-color: var(--accent);
+}
+.hud-frame::before {
+  top: 1.15rem;
+  left: 1.15rem;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.hud-frame::after {
+  bottom: 1.15rem;
+  right: 1.15rem;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+/* Thin telemetry meter */
+.data-meter {
+  height: 3px;
+  width: 100%;
+  background: var(--border);
+  overflow: hidden;
+}
+.data-meter > span {
+  display: block;
+  height: 100%;
+  background: var(--primary);
+  transform-origin: left center;
+  animation: meterIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes meterIn {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Live indicator dot */
+.live-dot {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--primary);
+  animation: livePulse 1.8s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot { animation: none; }
+  .data-meter > span { animation: none; }
 }

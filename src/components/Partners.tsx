@@ -17,9 +17,10 @@ export function Partners() {
         PARTNERS
       </span>
       <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:py-32">
-        <div className="flex items-center gap-4 mb-14">
-          <span className="font-heading text-xs tracking-[0.4em] text-accent">03 / PARTNERS</span>
-          <span className="flex-1 h-px bg-border" />
+        <div className="mb-14 flex items-center gap-4 border-x border-primary/25 px-4 py-2">
+          <span className="font-tech text-[10px] tracking-[0.2em] text-accent">03 / PARTNERS</span>
+          <span className="h-px flex-1 bg-border" />
+          <span className="hidden font-tech text-[10px] tracking-[0.2em] text-muted-foreground sm:inline">SUPPORT_NETWORK.LOG</span>
         </div>
         <h2 className="display-italic text-[2.5rem] sm:text-[4rem] text-foreground mb-14">
           ONZE <span className="text-primary">PARTNERS</span>
@@ -28,13 +29,13 @@ export function Partners() {
           <div
             className={
               isStatic
-                ? "flex flex-wrap justify-center gap-14 sm:gap-24 items-center"
+                ? "grid grid-cols-1 sm:grid-cols-2 border border-border divide-y sm:divide-y-0 sm:divide-x divide-border"
                 : "flex w-max animate-marquee gap-14 items-center"
             }
           >
             {loop.map((s, i) => {
               const inner = s.logo ? (
-                <div className="flex items-center justify-center h-20 w-40 sm:h-24 sm:w-48">
+                <div className="flex h-28 w-full items-center justify-center px-8 transition-colors hover:bg-primary/5">
                   <img
                     src={contentImage(s.logo)}
                     alt={s.name}
@@ -42,7 +43,7 @@ export function Partners() {
                   />
                 </div>
               ) : (
-                <div className="flex items-center justify-center h-20 w-40 sm:h-24 sm:w-48">
+                <div className="flex h-28 w-full items-center justify-center px-8 transition-colors hover:bg-primary/5">
                   <span className="font-heading italic text-xl sm:text-2xl font-bold tracking-wider text-muted-foreground/70 hover:text-foreground transition-colors whitespace-nowrap text-center">
                     {s.name}
                   </span>
@@ -54,12 +55,12 @@ export function Partners() {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0"
+                  className="block"
                 >
                   {inner}
                 </a>
               ) : (
-                <span key={`${s.name}-${i}`} className="shrink-0">
+                <span key={`${s.name}-${i}`} className="block">
                   {inner}
                 </span>
               );

@@ -53,7 +53,7 @@ export function Navbar() {
             <span className="text-primary">R</span>
             <span className="text-primary">.</span>
           </span>
-          <span className="hidden md:flex items-center gap-2 font-heading text-[11px] font-semibold tracking-[0.35em] text-muted-foreground truncate">
+          <span className="hidden md:flex items-center gap-2 font-tech text-[10px] font-bold tracking-[0.2em] text-muted-foreground truncate">
             <span className="inline-block h-1 w-6 bg-primary shrink-0" />
             #236 · JUNIOR ROTAX
           </span>
@@ -64,7 +64,7 @@ export function Navbar() {
             <li key={l.label}>
               <a
                 href={l.href}
-                className="font-heading text-[13px] font-medium tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="py-2 font-tech text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 {l.label}
               </a>
@@ -74,7 +74,7 @@ export function Navbar() {
 
         <a
           href="#contact"
-          className="hidden lg:inline-flex items-center gap-2 border border-accent text-accent font-heading text-[12px] font-semibold tracking-[0.25em] px-4 py-2.5 hover:bg-accent hover:text-accent-foreground transition shrink-0"
+          className="hidden lg:inline-flex items-center gap-2 border border-accent text-accent font-tech text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-2.5 hover:bg-accent hover:text-accent-foreground transition shrink-0"
         >
           WORD PARTNER
           <span className="inline-block w-2 h-2 bg-accent" />
