@@ -90,8 +90,3 @@ export function Socials() {
     </section>
   );
 }
-
-      </div>
-    </section>
-  );
-}
