@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Instagram, Youtube, Mail, ArrowRight } from "lucide-react";
 import { asset } from "@/lib/asset";
+import { useTexts } from "@/lib/site-data";
 
 export function ContactCta() {
+  const t = useTexts();
+  const email = t("contact_email");
   return (
     <section id="contact" className="relative overflow-hidden">
       <img
