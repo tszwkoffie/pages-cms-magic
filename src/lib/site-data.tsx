@@ -7,12 +7,14 @@ import {
   type About,
   type Race,
   type Sponsor,
+  type SocialPost,
 } from "@/lib/content";
 
 export interface SiteData {
   about: About;
   races: Race[];
   sponsors: Sponsor[];
+  socials: SocialPost[];
   texts: Record<string, string>;
   loading: boolean;
   refresh: () => Promise<void>;
@@ -40,6 +42,7 @@ const fallback: Omit<SiteData, "loading" | "refresh"> = {
   about: getAboutFallback(),
   races: getRacesFallback(),
   sponsors: getSponsorsFallback(),
+  socials: [],
   texts: defaultTexts,
 };
 
@@ -54,10 +57,11 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const load = async () => {
-    const [aboutRes, racesRes, sponsorsRes, textsRes] = await Promise.all([
+    const [aboutRes, racesRes, sponsorsRes, socialsRes, textsRes] = await Promise.all([
       supabase.from("site_about").select("*").limit(1).maybeSingle(),
       supabase.from("races").select("*").order("race_date", { ascending: true }),
       supabase.from("sponsors").select("*").order("sort_order", { ascending: true }),
+      supabase.from("socials").select("*").order("sort_order", { ascending: true }),
       supabase.from("site_texts").select("key,value"),
     ]);
 
@@ -96,6 +100,15 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
             order: s.sort_order,
           }))
         : prev.sponsors,
+      socials: socialsRes.data
+        ? socialsRes.data.map((p) => ({
+            image: p.image || "",
+            caption: p.caption || "",
+            link: p.link || "https://instagram.com/jeavy_reppel.karting",
+            date: p.post_date ?? "",
+            order: p.sort_order ?? 0,
+          })).filter((p) => p.image)
+        : prev.socials,
       texts: textsRes.data
         ? {
             ...defaultTexts,
@@ -123,6 +136,7 @@ export const useSiteData = () => useContext(SiteDataContext);
 export const useAbout = () => useSiteData().about;
 export const useRaces = () => useSiteData().races;
 export const useSponsors = () => useSiteData().sponsors;
+export const useSocials = () => useSiteData().socials;
 export function useTexts() {
   const { texts } = useSiteData();
   return (key: string, fallbackValue = "") => texts[key] ?? defaultTexts[key] ?? fallbackValue;
