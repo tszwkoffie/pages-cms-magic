@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="dot-grid relative min-h-screen overflow-hidden bg-background pt-24 pb-16 lg:pt-28"
+      className="dot-grid relative flex min-h-screen flex-col justify-center overflow-hidden bg-background pt-28 pb-16"
     >
       {/* Oversized telemetry number */}
       <span
