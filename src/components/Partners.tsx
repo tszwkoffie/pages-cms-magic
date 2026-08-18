@@ -30,7 +30,13 @@ export function Partners() {
 
         {/* Every partner sits in an identically sized cell so logos never look
             oversized or tiny next to each other. */}
-        <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4">
+        <div
+          className="mx-auto grid w-full gap-px border border-border bg-border"
+          style={{
+            gridTemplateColumns: `repeat(${Math.min(Math.max(sponsors.length, 1), 4)}, minmax(0, 1fr))`,
+            maxWidth: sponsors.length < 4 ? `${Math.max(sponsors.length, 1) * 22}rem` : undefined,
+          }}
+        >
           {sponsors.map((s, i) => {
             const inner = (
               <div className="flex h-32 w-full items-center justify-center bg-card px-6 py-6 transition-colors group-hover:bg-primary/5">
