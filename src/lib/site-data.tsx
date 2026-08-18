@@ -123,3 +123,7 @@ export const useSiteData = () => useContext(SiteDataContext);
 export const useAbout = () => useSiteData().about;
 export const useRaces = () => useSiteData().races;
 export const useSponsors = () => useSiteData().sponsors;
+export function useTexts() {
+  const { texts } = useSiteData();
+  return (key: string, fallbackValue = "") => texts[key] ?? defaultTexts[key] ?? fallbackValue;
+}
